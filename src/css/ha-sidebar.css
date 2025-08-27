@@ -81,7 +81,7 @@ ha-md-list-item.selected {
 /* Prevent text jumpiness on opening sidebar */
 .item-text {
 	display: block;
-	overflow: hidden;
+	overflow: visible;
 	white-space: nowrap;
 	line-height: var(--md-sys-typescale-label-large-line-height);
 	letter-spacing: var(--md-sys-typescale-label-large-tracking);
