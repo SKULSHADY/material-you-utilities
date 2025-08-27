@@ -341,6 +341,7 @@ div:has(sl-tab-group) {
 	sl-tab {
 		min-width: fit-content;
 		justify-content: center;
+		padding: 16px 0;
 	}
 	.edit-mode sl-tab[active]::after {
 		translate: -120px 0;
