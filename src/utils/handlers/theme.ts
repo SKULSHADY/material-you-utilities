@@ -7,7 +7,7 @@ import {
 	Platform,
 } from '@material/material-color-utilities';
 
-import { SpecVersion } from '@material/material-color-utilities/dynamiccolor/color_spec';
+// import { SpecVersion } from '@material/material-color-utilities/dynamiccolor/color_spec.js';
 import { applyStyles, buildStylesString, unset } from '.';
 import { materialDynamicColors, schemes } from '../../models/constants/colors';
 import { inputs } from '../../models/constants/inputs';
@@ -75,7 +75,7 @@ export async function setTheme(args: IHandlerArguments) {
 						Hct.fromInt(argbFromHex(values.base_color as string)),
 						mode == 'dark',
 						parseFloat(values.contrast as string),
-						values.spec as SpecVersion,
+						values.spec as '2021' | '2025', // as SpecVersion,
 						values.platform as Platform,
 					);
 
