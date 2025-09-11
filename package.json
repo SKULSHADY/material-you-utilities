@@ -18,7 +18,7 @@
 		"url": "git+https://github.com/Nerwyn/material-you-utilities.git"
 	},
 	"author": "Nerwyn",
-	"license": "ISC",
+	"license": "Apache-2.0",
 	"bugs": {
 		"url": "https://github.com/Nerwyn/material-you-utilities/issues"
 	},
