@@ -75,19 +75,20 @@ ha-icon-button-arrow-prev[slot='navigationIcon'] {
 }
 
 /* Turn view tabs into a separate footer, fix rail transition gap */
-sl-tab-group {
+ha-tab-group {
 	width: calc(100vw - var(--mdc-drawer-width, 0px));
 	margin: 0;
 	margin-inline: 0;
 	pointer-events: all;
-	padding-inline-start: 128px;
-	translate: -128px 0;
+	padding-inline-start: 0;
+	translate: -4px 0;
+	align-content: center;
 }
-sl-tab-group:dir(rtl) {
-	translate: 128px 0;
+ha-tab-group:dir(rtl) {
+	translate: 4px 0;
 }
 .edit-mode .tab-bar,
-.toolbar > sl-tab-group {
+.toolbar > ha-tab-group {
 	position: fixed;
 	top: unset;
 	bottom: 0;
@@ -100,18 +101,18 @@ sl-tab-group:dir(rtl) {
 }
 
 /* Option to hide navigation bar when not in edit mode */
-:not(.edit-mode) > .header sl-tab-group {
+:not(.edit-mode) > .header ha-tab-group {
 	display: var(--navbar-display, initial);
 }
 
 /* Make tabs full width and remove bottom border */
-sl-tab-group::part(tabs) {
+ha-tab-group::part(tabs) {
 	justify-content: space-evenly;
 	border-bottom: 0;
 }
 
 /* Display view tab contents vertically and calculate width to fill entire toolbar */
-sl-tab {
+ha-tab-group-tab {
 	display: flex;
 	padding: 12px 0;
 	flex-direction: column;
@@ -127,14 +128,14 @@ sl-tab {
 }
 
 /* Remove tab padding, icon justify center, and remove tap highlight color */
-sl-tab::part(base) {
+ha-tab-group-tab::part(base) {
 	justify-content: center;
 	padding: 0px;
 	-webkit-tap-highlight-color: transparent;
 }
 
 /* Add background and color current view icon */
-sl-tab ha-icon::before {
+ha-tab-group-tab ha-icon::before {
 	content: '';
 	position: absolute;
 	height: 32px;
@@ -144,10 +145,10 @@ sl-tab ha-icon::before {
 	transition: transform var(--md-sys-motion-expressive-spatial-fast);
 	transform: scaleX(0);
 }
-sl-tab[active] ha-icon::before {
+ha-tab-group-tab[active] ha-icon::before {
 	transform: scaleX(1);
 }
-sl-tab[active] ha-icon {
+ha-tab-group-tab[active] ha-icon {
 	color: var(--md-sys-color-on-secondary-container);
 }
 
@@ -157,7 +158,7 @@ ha-svg-icon {
 }
 
 /* Reduce height of edit mode view icons */
-sl-tab[active] .edit-icon.view {
+ha-tab-group-tab[active] .edit-icon.view {
 	align-items: center;
 	height: 32px;
 	z-index: 1;
@@ -175,7 +176,7 @@ ha-icon {
 }
 
 /* View icon state layers */
-sl-tab ha-icon::after {
+ha-tab-group-tab ha-icon::after {
 	content: '';
 	position: absolute;
 	height: 32px;
@@ -187,23 +188,23 @@ sl-tab ha-icon::after {
 	transition: opacity var(--md-sys-motion-expressive-effects-default);
 }
 @media (hover: hover) {
-	sl-tab:hover ha-icon::after {
+	ha-tab-group-tab:hover ha-icon::after {
 		opacity: 0.08;
 	}
 }
-sl-tab:focus-visible ha-icon::after,
-sl-tab:active ha-icon::after {
+ha-tab-group-tab:focus-visible ha-icon::after,
+ha-tab-group-tab:active ha-icon::after {
 	opacity: 0.18;
 }
 
 /* Tabs with no icon */
-sl-tab:not(:has(ha-icon))::part(base) {
+ha-tab-group-tab:not(:has(ha-icon))::part(base) {
 	color: transparent;
 	line-height: 32px;
 }
 
 /* View label */
-sl-tab::after {
+ha-tab-group-tab::after {
 	content: attr(aria-label);
 	text-transform: none;
 	text-wrap: wrap;
@@ -222,12 +223,12 @@ sl-tab::after {
 }
 
 /* Current view label color */
-sl-tab[active]::after {
+ha-tab-group-tab[active]::after {
 	color: var(--md-sys-color-secondary);
 }
 
 /* Make edit mode current view tab fit all buttons */
-.edit-mode sl-tab[active] {
+.edit-mode ha-tab-group-tab[active] {
 	min-width: fit-content;
 }
 
@@ -274,13 +275,13 @@ sl-tab[active]::after {
 }
 
 /* Add bottom footer padding when present */
-div:has(sl-tab-group) {
+div:has(ha-tab-group) {
 	--footer-offset: calc(
 		var(--kiosk-header-height, var(--footer-height)) +
 			env(safe-area-inset-bottom)
 	);
 }
-.header:has(sl-tab-group) + #view {
+.header:has(ha-tab-group) + #view {
 	padding-bottom: var(--footer-offset);
 }
 
@@ -296,34 +297,38 @@ div:has(sl-tab-group) {
 
 /* Large displays alternate navigation bar */
 @media (width > 870px) or (orientation: landscape) {
+	ha-tab-group {
+		translate: -12px 0;
+	}
+	ha-tab-group:dir(rtl) {
+		translate: 12px 0;
+	}
+
 	/* Center view tabs */
-	sl-tab-group::part(tabs) {
+	ha-tab-group::part(tabs) {
 		justify-content: center;
 	}
 
 	/* Show original label of view tab with no icon */
-	sl-tab:not(:has(ha-icon))::part(base) {
+	ha-tab-group-tab:not(:has(ha-icon))::part(base) {
 		color: unset;
 	}
 
 	/* Move label to right of icon, ensure that it can contain content, and remove top margin */
-	sl-tab::part(base) {
+	ha-tab-group-tab::part(base) {
 		justify-content: flex-start;
 		align-self: center;
 		width: fit-content;
 		margin-top: 0;
 	}
-	sl-tab {
+	ha-tab-group-tab {
 		min-width: fit-content;
 		justify-content: center;
 		padding: 16px 0;
 	}
-	.edit-mode sl-tab[active]::after {
-		translate: -120px 0;
-	}
 
 	/* Remove vertical label */
-	sl-tab::after {
+	ha-tab-group-tab::after {
 		content: unset;
 	}
 
@@ -333,7 +338,7 @@ div:has(sl-tab-group) {
 	}
 
 	/* Position icon on left of indicator */
-	sl-tab ha-icon {
+	ha-tab-group-tab ha-icon {
 		justify-content: flex-start;
 		width: 100%;
 		position: relative;
@@ -341,8 +346,8 @@ div:has(sl-tab-group) {
 	}
 
 	/* Horizontal label, indicator, and state layers */
-	sl-tab ha-icon::before,
-	sl-tab ha-icon::after {
+	ha-tab-group-tab ha-icon::before,
+	ha-tab-group-tab ha-icon::after {
 		content: attr(title);
 		display: flex;
 		align-items: center;
@@ -357,14 +362,14 @@ div:has(sl-tab-group) {
 		padding-inline-end: 16px;
 		z-index: 0;
 	}
-	sl-tab:not([aria-label]) ha-icon::before,
-	sl-tab:not([aria-label]) ha-icon::after {
+	ha-tab-group-tab:not([aria-label]) ha-icon::before,
+	ha-tab-group-tab:not([aria-label]) ha-icon::after {
 		margin-inline-start: -18px;
 	}
-	sl-tab ha-icon::before {
+	ha-tab-group-tab ha-icon::before {
 		color: transparent;
 	}
-	sl-tab ha-icon::after {
+	ha-tab-group-tab ha-icon::after {
 		position: relative;
 		inset-inline-start: -24px;
 		color: var(--md-sys-color-on-surface-variant);
@@ -377,23 +382,23 @@ div:has(sl-tab-group) {
 
 		--state-layer-opacity: 0;
 	}
-	sl-tab[active] ha-icon::after {
+	ha-tab-group-tab[active] ha-icon::after {
 		color: var(--md-sys-color-secondary);
 	}
 	@media (hover: hover) {
-		sl-tab:hover ha-icon::after {
+		ha-tab-group-tab:hover ha-icon::after {
 			--state-layer-opacity: 0.08;
 			opacity: 1;
 		}
 	}
-	sl-tab:focus-visible ha-icon::after,
-	sl-tab:active ha-icon::after {
+	ha-tab-group-tab:focus-visible ha-icon::after,
+	ha-tab-group-tab:active ha-icon::after {
 		--state-layer-opacity: 0.18;
 		opacity: 1;
 	}
 
 	/* Fix edit mode horizontal item current item position */
-	.edit-mode sl-tab ha-icon {
+	.edit-mode ha-tab-group-tab ha-icon {
 		position: relative;
 		inset-inline-start: 20px;
 	}
