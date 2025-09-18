@@ -53,7 +53,7 @@ export function loadStyles(styles: string): string {
 	// Initial check to avoid expensive regex for most user styles
 	if (importantStyles.includes('@keyframes')) {
 		const keyframeses = importantStyles.match(
-			/@keyframes .*?\s{(.|\s)*?}\s}/g,
+			/@keyframes\s.*?\s{(.|\n)*?}\n}/g,
 		);
 		for (const keyframes of keyframeses ?? []) {
 			importantStyles = importantStyles.replace(
