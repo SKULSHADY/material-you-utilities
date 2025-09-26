@@ -36,7 +36,7 @@ import hueLikeLightCard from './hue-like-light-card.css';
 import huiEntitiesCardEditor from './hui-entities-card-editor.css';
 import huiEntitiesCard from './hui-entities-card.css';
 import huiGridSection from './hui-grid-section.css';
-import huiRootHideSlTabGroup from './hui-root-hide-sl-tab-group.css';
+import huiRootHideSlTabGroup from './hui-root-hide-ha-tab-group.css';
 import huiRoot from './hui-root.css';
 import huiViewHeader from './hui-view-header.css';
 import huiViewVisibilityEditor from './hui-view-visibility-editor.css';

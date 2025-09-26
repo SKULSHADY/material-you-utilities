@@ -162,17 +162,17 @@ export class MaterialYouConfigCard extends LitElement {
 
 	buildTabBar(index: number, handler: (e: Event) => void, tabs: string[]) {
 		return html`
-			<sl-tab-group @sl-tab-show=${handler}>
+			<ha-tab-group @ha-tab-group-tab-show=${handler}>
 				${tabs.map(
 					(tab, i) =>
-						html`<sl-tab
+						html`<ha-tab-group-tab
 							slot="nav"
 							panel=${tab}
 							.active=${i == index}
-							>${tab}</sl-tab
+							>${tab}</ha-tab-group-tab
 						>`,
 				)}
-			</sl-tab-group>
+			</ha-tab-group>
 		`;
 	}
 
@@ -647,7 +647,7 @@ export class MaterialYouConfigCard extends LitElement {
 				);
 			}
 
-			sl-tab-group {
+			ha-tab-group {
 				width: 100%;
 				margin: auto;
 				text-transform: capitalize;
@@ -656,13 +656,13 @@ export class MaterialYouConfigCard extends LitElement {
 
 				--sl-spacing-x-large: 0;
 			}
-			sl-tab-group::part(scroll-button) {
+			ha-tab-group::part(scroll-button) {
 				display: none;
 			}
-			sl-tab {
+			ha-tab-group-tab {
 				flex: 1;
 			}
-			sl-tab::part(base) {
+			ha-tab-group-tab::part(base) {
 				width: 100%;
 				justify-content: center;
 			}
