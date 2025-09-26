@@ -54,7 +54,7 @@ export class MaterialYouPanel extends LitElement {
 
 	buildTabBar(index: number, handler: (e: Event) => void, tabs: string[]) {
 		return html`
-			<ha-tab-group @ha-tab-group-tab-show=${handler}>
+			<ha-tab-group @wa-tab-show=${handler}>
 				${tabs.map(
 					(tab, i) =>
 						html`<ha-tab-group-tab
