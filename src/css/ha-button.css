@@ -134,3 +134,8 @@ slot {
 	--ha-button-text-color: var(--on-error-color);
 	--state-layer-color: var(--on-error-color);
 }
+
+/* Change border radius of unselected toggle group button */
+:host([appearance~='filled'].wa-button-group__button) {
+	--ha-button-border-radius: var(--md-sys-shape-corner-small);
+}
