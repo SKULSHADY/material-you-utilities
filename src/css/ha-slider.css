@@ -19,7 +19,7 @@
 	height: var(--ha-slider-track-size);
 	width: 6px;
 	border-radius: 2px;
-	box-shadow: -4px 0 0 var(--ha-slider-thumb-negative-color);
+	box-shadow: -4px 0 0 3px var(--ha-slider-thumb-negative-color);
 	transition: inset-inline-end var(--md-sys-motion-expressive-spatial-fast);
 }
 
