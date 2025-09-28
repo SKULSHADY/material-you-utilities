@@ -1,6 +1,8 @@
 /* Fix cursor */
 #slider {
 	cursor: pointer;
+
+	--thumb-scale: 1;
 }
 
 /* Inactive track */
@@ -13,11 +15,12 @@
 #indicator::after {
 	content: '';
 	position: absolute;
-	inset-inline-end: -18px;
+	inset-inline-end: calc(-14px - 4px * var(--thumb-scale));
 	height: var(--ha-slider-track-size);
 	width: 6px;
 	border-radius: 2px;
 	box-shadow: -4px 0 0 var(--ha-slider-thumb-negative-color);
+	transition: inset-inline-end var(--md-sys-motion-expressive-spatial-fast);
 }
 
 /* Active track */
@@ -28,37 +31,49 @@
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 	box-shadow: 4px 0 0 var(--ha-slider-thumb-negative-color);
-	margin-inline-end: 6px;
+	margin-inline-end: calc(4px + 2px * var(--thumb-scale));
 	transition:
 		right var(--md-sys-motion-expressive-spatial-fast),
-		left var(--md-sys-motion-expressive-spatial-fast);
-}
-
-/* Thumb negative area */
-#indicator::before {
-	content: '';
-	position: absolute;
-	inset-inline-end: -12px;
-	height: var(--ha-slider-track-size);
-	width: 12px;
-	background: var(--ha-slider-thumb-negative-color);
+		left var(--md-sys-motion-expressive-spatial-fast),
+		margin-inline-end var(--md-sys-motion-expressive-spatial-fast);
 }
 
 /* Thumb */
 #thumb {
 	background: var(--md-sys-color-primary);
 	border-radius: var(--md-sys-shape-corner-full);
+	width: calc(var(--thumb-width) * var(--thumb-scale));
+	left: calc(var(--position) - (var(--thumb-width) * var(--thumb-scale)) / 2);
 	transition:
-		scale var(--md-sys-motion-expressive-spatial-fast),
+		width var(--md-sys-motion-expressive-spatial-fast),
 		left var(--md-sys-motion-expressive-spatial-fast);
 	outline-offset: 6px;
 
 	--thumb-height: 44px;
 	--thumb-width: 4px;
 }
-#slider:focus-visible #thumb,
-#slider:has(~ #tooltip[open]) #thumb {
-	scale: 0.5 1;
+
+/* Thumb negative area */
+#thumb::before,
+#thumb::after {
+	content: '';
+	position: absolute;
+	height: var(--ha-slider-track-size);
+	width: 4px;
+	top: calc(0.5 * (100% - var(--ha-slider-track-size)));
+	background: var(--ha-slider-thumb-negative-color);
+}
+#thumb::before {
+	inset-inline-start: -4px;
+}
+#thumb::after {
+	inset-inline-end: -4px;
+}
+
+/* Reduce thumb width when active */
+#slider:focus-visible,
+#slider:has(~ #tooltip[open]) {
+	--thumb-scale: 0.5;
 }
 #slider:focus-visible #thumb {
 	outline: 6px solid var(--md-sys-color-secondary-container);
