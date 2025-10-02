@@ -8,18 +8,30 @@
 	background: var(--ha-dialog-surface-background);
 	transition:
 		left var(--md-sys-motion-expressive-spatial-default),
-		top var(--md-sys-motion-expressive-spatial-default);
+		top var(--md-sys-motion-expressive-spatial-default),
+		translate var(--md-sys-motion-expressive-spatial-fast),
+		scale var(--md-sys-motion-expressive-spatial-fast);
 }
 .handle::after {
 	transition: scale var(--md-sys-motion-expressive-spatial-fast);
 }
+:host(#columns:focus-visible) .handle,
+:host(#columns:active) .handle {
+	scale: 0.66667 1;
+	translate: -2px 0;
+}
+:host(#rows:focus-visible) .handle,
+:host(#rows:active) .handle {
+	scale: 1 0.66667;
+	translate: 0 -2px;
+}
 :host(#columns:focus-visible) .handle::after,
 :host(#columns:active) .handle::after {
-	scale: 0.5 1;
+	scale: 0.75 1;
 }
 :host(#rows:focus-visible) .handle::after,
 :host(#rows:active) .handle::after {
-	scale: 1 0.5;
+	scale: 1 0.75;
 }
 
 /* Change background and dot colors */
