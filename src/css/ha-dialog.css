@@ -1,6 +1,6 @@
 /* Fix slider thumb background color */
 #content {
-	--md-slider-handle-color: var(--ha-dialog-surface-background);
+	--ha-slider-thumb-negative-color: var(--ha-dialog-surface-background);
 }
 
 /* Add elevation and color transition */

@@ -1,106 +1,98 @@
-/* Set Material Design 3 slider variables that should only apply to redesigned sliders */
-:host {
-	padding: 8px 0;
-	align-items: center;
-	--md-slider-handle-height: 44px;
-	--md-slider-handle-width: 16px;
-	--md-slider-handle-shape: 4px;
-	--md-slider-hover-handle-color: var(--md-slider-handle-color);
-	--md-slider-pressed-handle-color: var(--md-slider-handle-color);
-	--md-slider-focus-handle-color: var(--md-slider-handle-color);
-	--md-slider-disabled-handle-color: var(--md-slider-handle-color);
+/* Fix cursor */
+#slider {
+	cursor: pointer;
+
+	--thumb-scale: 1;
 }
 
-/* Animation */
-/* .track::before,
-.track::after,
-.handleContainer {
-	transition:
-		clip-path var(--md-sys-motion-expressive-spatial-default),
-		inset-inline-start var(--md-sys-motion-expressive-spatial-default),
-		inline-size var(--md-sys-motion-expressive-spatial-default);
-} */
-
-/* Space around handle */
-.handleNub {
-	height: var(--md-slider-active-track-height);
-	box-shadow: 0 0 1px 0 var(--md-slider-handle-color);
-	width: 16px;
-	border-radius: 0;
+/* Inactive track */
+#track {
+	background: var(--md-sys-color-secondary-container);
+	border-radius: var(--md-sys-shape-corner-small);
 }
 
-/* Actual handle */
-.handleNub::after {
+/* Inactive track inner corner shape */
+#indicator::after {
 	content: '';
 	position: absolute;
-	inset: 0;
-	width: 4px;
-	height: 44px;
-	margin: auto;
+	inset-inline-end: calc(-14px - 4px * var(--thumb-scale));
+	height: var(--ha-slider-track-size);
+	width: 6px;
+	border-radius: 2px;
+	box-shadow: -4px 0 0 3px var(--ha-slider-thumb-negative-color);
+	transition: inset-inline-end var(--md-sys-motion-expressive-spatial-fast);
+}
+
+/* Active track */
+#indicator {
+	background: var(--md-sys-color-primary);
+	border-top-left-radius: var(--md-sys-shape-corner-small);
+	border-bottom-left-radius: var(--md-sys-shape-corner-small);
+	border-top-right-radius: 2px;
+	border-bottom-right-radius: 2px;
+	box-shadow: 4px 0 0 var(--ha-slider-thumb-negative-color);
+	margin-inline-end: calc(4px + 2px * var(--thumb-scale));
+	transition:
+		right var(--md-sys-motion-expressive-spatial-fast),
+		left var(--md-sys-motion-expressive-spatial-fast),
+		margin-inline-end var(--md-sys-motion-expressive-spatial-fast);
+}
+
+/* Thumb */
+#thumb {
 	background: var(--md-sys-color-primary);
 	border-radius: var(--md-sys-shape-corner-full);
-	transition: scale var(--md-sys-motion-expressive-spatial-fast);
-}
-:host([disabled]) .handleNub::after {
-	background: var(--md-sys-color-on-surface);
-}
-.hover .handleNub::after,
-input:focus-visible ~ .handleContainerPadded .handleNub::after,
-input:active ~ .handleContainerPadded .handleNub::after {
-	scale: 0.5 1;
+	width: calc(var(--thumb-width) * var(--thumb-scale));
+	left: calc(var(--position) - (var(--thumb-width) * var(--thumb-scale)) / 2);
+	transition:
+		width var(--md-sys-motion-expressive-spatial-fast),
+		left var(--md-sys-motion-expressive-spatial-fast);
+	outline-offset: 6px;
+
+	--thumb-height: 44px;
+	--thumb-width: 4px;
 }
 
-/* Reshape focus ring */
-md-focus-ring {
-	height: 56px;
-	width: 12px;
-	z-index: 1;
-}
-
-/* Set label width and position */
-.label {
-	width: var(--md-slider-label-container-width);
-	translate: 0 -14px;
-}
-
-/* Remove teardrop from label */
-.label::before {
-	display: none;
-}
-
-/* Do not show label on focus-within if hover class is not present */
-:host(:focus-within)
-	.container
-	.handleContainerPadded
-	.handleContainerBlock
-	:not(.hover)
-	.label {
-	transform: scale(0);
-}
-
-/* Add track inner corner shape */
-.handle::before,
-.handle::after {
+/* Thumb negative area */
+#thumb::before,
+#thumb::after {
 	content: '';
-	position: relative;
-	height: var(--md-slider-active-track-height);
+	position: absolute;
+	height: var(--ha-slider-track-size);
 	width: 4px;
+	top: calc(0.5 * (100% - var(--ha-slider-track-size)));
+	background: var(--ha-slider-thumb-negative-color);
 }
-.handle::before {
-	inset-inline-start: -8px;
-	border-start-end-radius: 2px;
-	border-end-end-radius: 2px;
+#thumb::before {
+	inset-inline-start: -4px;
 }
-.handle::before,
-.handle:dir(rtl)::after {
-	box-shadow: 2px 0 0 var(--md-slider-handle-color);
+#thumb::after {
+	inset-inline-end: -4px;
 }
-.handle::after {
-	inset-inline-end: -8px;
-	border-start-start-radius: 2px;
-	border-end-start-radius: 2px;
+
+/* Reduce thumb width when active */
+#slider:focus-visible,
+#slider:has(~ #tooltip[open]) {
+	--thumb-scale: 0.5;
 }
-.handle::after,
-.handle:dir(rtl)::before {
-	box-shadow: -2px 0 0 var(--md-slider-handle-color);
+#slider:focus-visible #thumb {
+	outline: 6px solid var(--md-sys-color-secondary-container);
+}
+
+/* Tooltip */
+#tooltip::part(body) {
+	background: var(--md-sys-color-inverse-surface);
+	color: var(--md-sys-color-inverse-on-surface);
+	padding: 12px 16px;
+}
+
+/* Stops */
+#markers {
+	--marker-width: 4px;
+	--marker-height: 4px;
+}
+.marker {
+	/* background-color: var(--md-sys-color-on-primary); */
+	background-color: var(--md-sys-color-on-secondary-container);
+	mix-blend-mode: difference;
 }

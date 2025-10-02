@@ -1,6 +1,6 @@
 /* Make sliders use card background color for handle and fix card-background-color */
 :host {
-	--md-slider-handle-color: var(--ha-card-background);
+	--ha-slider-thumb-negative-color: var(--ha-card-background);
 	--card-background-color: var(--ha-card-background);
 }
 

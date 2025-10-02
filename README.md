@@ -347,6 +347,12 @@ Uses primary colors with no background or outline.
 
 - The Material Design specification has five variations, but Home Assistant's new `ha-button` parent component only supports four. Home Assistant itself only uses three variants.
 
+### Button Groups
+
+A group of buttons used as a selector. The selected button uses the tonal color scheme, whie the other buttons use the filled color scheme and have less round corners.
+
+<img src="https://raw.githubusercontent.com/Nerwyn/material-you-utilities/main/assets/button-group.png" width="200"/>
+
 ### [FAB](https://m3.material.io/components/floating-action-button/overview)
 
 Floating action button with just an icon.
@@ -410,7 +416,7 @@ Numerical inputs optimized for human interaction. Uses the small variant, which 
 
 #### Notes
 
-- The specification calls for the tooltip to appear and the handle to narrow when the slider is focused or pressed, but not hovered. The Home Assistant slider shows the tooltip on hover, and it is difficult to disable this behavior without breaking the tooltip and slider narrowing altogether. So instead the tooltip appears and handle narrows on hover.
+- As of 2025.10.0 the base component of the slider has changed. This new component does not support alternate colors for tick marks before and after the slider handle. Instead one color is used with CSS mix-blend-mode difference.
 - Home Assistant actually has its own implementation of a Material Design 3 slider (extra small variant), but it is only used for the card configuration layout grid size picker. The styles of this slider have been slightly modified to use theme colors, to modify the tooltip size, and to narrow the handle when pressed or focused.
 
 ## Pop-ups

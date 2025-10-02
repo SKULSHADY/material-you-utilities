@@ -63,6 +63,19 @@ export function loadStyles(styles: string): string {
 		}
 	}
 
+	// Remove !important from other at-rules
+	if (importantStyles.includes('@')) {
+		const atRules = importantStyles.match(
+			/@(import|charset|layer|namespace)\s.*?;/g,
+		);
+		for (const atRule of atRules ?? []) {
+			importantStyles = importantStyles.replace(
+				atRule,
+				atRule.replace(/ !important/g, ''),
+			);
+		}
+	}
+
 	return importantStyles;
 }
 
