@@ -39,6 +39,7 @@ import huiRootHideSlTabGroup from './hui-root-hide-ha-tab-group.css';
 import huiRoot from './hui-root.css';
 import huiViewHeader from './hui-view-header.css';
 import huiViewVisibilityEditor from './hui-view-visibility-editor.css';
+import moreInfoMediaPlayer from './more-info-media_player.css';
 
 /**
  * Home Assistant (and other) custom elements to patch and their corresponding styles
@@ -82,6 +83,7 @@ export const elements: Record<string, string> = {
 	'hue-like-light-card': hueLikeLightCard,
 	'home-assistant': homeAssistant,
 	'home-assistant-main': homeAssistantMain,
+	'more-info-media_player': moreInfoMediaPlayer,
 };
 
 /**

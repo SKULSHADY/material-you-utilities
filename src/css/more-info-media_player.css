@@ -1,0 +1,19 @@
+.position-bar ha-slider,
+.position-bar ha-slider::part(slider) {
+	/* Reduce position slider heights */
+	--ha-slider-track-size: 4px;
+	--thumb-height: 4px;
+	--thumb-width: 4px;
+	--thumb-focus-ring-height: 4px;
+	--thumb-actual-height: 4px;
+
+	/* Remove thumb negative area */
+	--ha-slider-thumb-negative-color: var(--md-sys-color-primary);
+}
+
+/* Remove thumb negative area */
+.position-bar ha-slider::part(indicator)::after,
+.position-bar ha-slider::part(thumb)::before,
+.position-bar ha-slider::part(thumb)::after {
+	display: none;
+}

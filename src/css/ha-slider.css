@@ -1,3 +1,11 @@
+/* Thumb size */
+:host {
+	--thumb-height: var(--ha-slider-track-size);
+	--thumb-width: 12px;
+	--thumb-focus-ring-height: 54px;
+	--thumb-actual-height: 44px;
+}
+
 /* Fix cursor */
 #slider {
 	cursor: pointer;
@@ -43,9 +51,6 @@
 	transition:
 		width var(--md-sys-motion-expressive-spatial-default),
 		left var(--md-sys-motion-expressive-spatial-default);
-
-	--thumb-height: var(--ha-slider-track-size);
-	--thumb-width: 12px;
 }
 
 /* Thumb */
@@ -60,8 +65,6 @@
 	);
 	border-radius: var(--md-sys-shape-corner-full);
 	inset-inline-start: 4px;
-
-	--thumb-actual-height: 44px;
 }
 #thumb::before {
 	background: var(--md-sys-color-primary);
@@ -97,14 +100,12 @@
 	outline: none;
 }
 #slider:focus-visible #thumb::after {
-	height: var(--thumb-actual-height);
+	height: var(--thumb-focus-ring-height);
 	top: calc(
-		-0.5 * (var(--thumb-actual-height) - var(--ha-slider-track-size))
+		-0.5 * (var(--thumb-focus-ring-height) - var(--ha-slider-track-size))
 	);
 	outline-offset: 2px;
 	outline: 4px solid var(--md-sys-color-secondary-container);
-
-	--thumb-actual-height: 54px;
 }
 
 /* Tooltip */
