@@ -19,7 +19,6 @@ import haMdDialog from './ha-md-dialog.css';
 import haMdListItem from './ha-md-list-item.css';
 import haMdMenuItem from './ha-md-menu-item.css';
 import haMenuButton from './ha-menu-button.css';
-import haMoreInfoInfo from './ha-more-info-info.css';
 import haSelectBox from './ha-select-box.css';
 import haSelect from './ha-select.css';
 import haSettingsRow from './ha-settings-row.css';
@@ -61,7 +60,6 @@ export const elements: Record<string, string> = {
 	'ha-md-list-item': haMdListItem,
 	'ha-md-menu-item': haMdMenuItem,
 	'ha-menu-button': haMenuButton,
-	'ha-more-info-info': haMoreInfoInfo,
 	'ha-drawer': haDrawer,
 	'ha-select': haSelect,
 	'ha-select-box': haSelectBox,

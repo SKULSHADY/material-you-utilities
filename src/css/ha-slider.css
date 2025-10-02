@@ -1,8 +1,6 @@
 /* Fix cursor */
 #slider {
 	cursor: pointer;
-
-	--thumb-scale: 1;
 }
 
 /* Inactive track */
@@ -15,12 +13,12 @@
 #indicator::after {
 	content: '';
 	position: absolute;
-	inset-inline-end: calc(-14px - 4px * var(--thumb-scale));
+	inset-inline-end: -18px;
 	height: var(--ha-slider-track-size);
 	width: 6px;
 	border-radius: 2px;
 	box-shadow: -4px 0 0 3px var(--ha-slider-thumb-negative-color);
-	transition: inset-inline-end var(--md-sys-motion-expressive-spatial-fast);
+	transition: inset-inline-end var(--md-sys-motion-expressive-spatial-default);
 }
 
 /* Active track */
@@ -31,52 +29,82 @@
 	border-top-right-radius: 2px;
 	border-bottom-right-radius: 2px;
 	box-shadow: 4px 0 0 var(--ha-slider-thumb-negative-color);
-	margin-inline-end: calc(4px + 2px * var(--thumb-scale));
+	margin-inline-end: 6px;
 	transition:
-		right var(--md-sys-motion-expressive-spatial-fast),
-		left var(--md-sys-motion-expressive-spatial-fast),
-		margin-inline-end var(--md-sys-motion-expressive-spatial-fast);
-}
-
-/* Thumb */
-#thumb {
-	background: var(--md-sys-color-primary);
-	border-radius: var(--md-sys-shape-corner-full);
-	width: calc(var(--thumb-width) * var(--thumb-scale));
-	left: calc(var(--position) - (var(--thumb-width) * var(--thumb-scale)) / 2);
-	transition:
-		width var(--md-sys-motion-expressive-spatial-fast),
-		left var(--md-sys-motion-expressive-spatial-fast);
-	outline-offset: 6px;
-
-	--thumb-height: 44px;
-	--thumb-width: 4px;
+		right var(--md-sys-motion-expressive-spatial-default),
+		left var(--md-sys-motion-expressive-spatial-default),
+		margin-inline-end var(--md-sys-motion-expressive-spatial-default);
 }
 
 /* Thumb negative area */
+#thumb {
+	background: var(--ha-slider-thumb-negative-color);
+	border-radius: 0;
+	transition:
+		width var(--md-sys-motion-expressive-spatial-default),
+		left var(--md-sys-motion-expressive-spatial-default);
+
+	--thumb-height: var(--ha-slider-track-size);
+	--thumb-width: 12px;
+}
+
+/* Thumb */
 #thumb::before,
 #thumb::after {
 	content: '';
 	position: absolute;
-	height: var(--ha-slider-track-size);
+	height: var(--thumb-actual-height);
 	width: 4px;
-	top: calc(0.5 * (100% - var(--ha-slider-track-size)));
-	background: var(--ha-slider-thumb-negative-color);
+	top: calc(
+		-0.5 * (var(--thumb-actual-height) - var(--ha-slider-track-size))
+	);
+	border-radius: var(--md-sys-shape-corner-full);
+	inset-inline-start: 4px;
+
+	--thumb-actual-height: 44px;
 }
 #thumb::before {
-	inset-inline-start: -4px;
+	background: var(--md-sys-color-primary);
 }
 #thumb::after {
-	inset-inline-end: -4px;
+	transition: outline-width var(--md-sys-motion-expressive-spatial-default);
 }
 
 /* Reduce thumb width when active */
-#slider:focus-visible,
-#slider:has(~ #tooltip[open]) {
-	--thumb-scale: 0.5;
+#slider:focus-visible #thumb,
+#slider:has(~ #tooltip[open]) #thumb {
+	scale: 0.66667 1;
 }
+#slider:focus-visible #thumb::before,
+#slider:has(~ #tooltip[open]) #thumb::before {
+	scale: 0.75 1;
+}
+#slider:focus-visible #thumb::after,
+#slider:has(~ #tooltip[open]) #thumb::after {
+	scale: 1.5 1;
+}
+#slider:focus-visible #indicator,
+#slider:has(~ #tooltip[open]) #indicator {
+	margin-inline-end: 4px;
+}
+#slider:focus-visible #indicator::after,
+#slider:has(~ #tooltip[open]) #indicator::after {
+	inset-inline-end: -14px;
+}
+
+/* Thumb focus ring */
 #slider:focus-visible #thumb {
-	outline: 6px solid var(--md-sys-color-secondary-container);
+	outline: none;
+}
+#slider:focus-visible #thumb::after {
+	height: var(--thumb-actual-height);
+	top: calc(
+		-0.5 * (var(--thumb-actual-height) - var(--ha-slider-track-size))
+	);
+	outline-offset: 2px;
+	outline: 4px solid var(--md-sys-color-secondary-container);
+
+	--thumb-actual-height: 54px;
 }
 
 /* Tooltip */
@@ -84,6 +112,7 @@
 	background: var(--md-sys-color-inverse-surface);
 	color: var(--md-sys-color-inverse-on-surface);
 	padding: 12px 16px;
+	translate: 0 -6px;
 }
 
 /* Stops */
