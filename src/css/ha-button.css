@@ -17,6 +17,7 @@
 
 /* Redefine colors to tokens, change border-radius on interaction, icon size */
 .button {
+	position: relative;
 	background-color: var(
 		--inherited-background-color,
 		var(--ha-button-background-color)
