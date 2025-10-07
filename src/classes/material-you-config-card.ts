@@ -522,7 +522,7 @@ export class MaterialYouConfigCard extends LitElement {
 				</div>
 				${this.hass.user?.is_admin
 					? html`<div class="card-actions">
-							${this.buildCreateHelpersButton()}${this.buildDeleteHelpersButton()}
+							${this.buildDeleteHelpersButton()}${this.buildCreateHelpersButton()}
 						</div>`
 					: ''}
 			</ha-card>
@@ -710,12 +710,13 @@ export class MaterialYouConfigCard extends LitElement {
 				display: flex;
 				flex-direction: row;
 				justify-content: space-between;
-				height: 36px;
+				height: 40px;
 			}
 			.button {
 				display: flex;
 				justify-content: center;
 				align-items: center;
+				background: var(--background);
 				color: var(--color);
 				cursor: pointer;
 				user-select: none;
@@ -736,17 +737,17 @@ export class MaterialYouConfigCard extends LitElement {
 			}
 			@media (hover: hover) {
 				.button:hover::after {
-					opacity: var(--mdc-ripple-hover-opacity, 0.04);
+					opacity: 0.08;
 				}
 			}
 			.button:active::after {
-				opacity: var(--mdc-ripple-focus-opacity, 0.12);
+				opacity: 0.1;
 			}
 			ha-icon:focus-visible {
 				outline: none;
 			}
 			.button:has(ha-icon:focus-visible)::after {
-				opacity: var(--mdc-ripple-hover-opacity, 0.04);
+				opacity: 0.1;
 			}
 			.reset {
 				height: var(--ha-button-height, 40px);
@@ -773,26 +774,27 @@ export class MaterialYouConfigCard extends LitElement {
 			.delete {
 				margin: 0 8px;
 				height: var(--ha-button-height, 40px);
-				width: 100px;
+				width: 120px;
 				border-radius: var(--ha-button-border-radius);
-				transition: border-radius var(--md-sys-motion-expressive-spatial-fast)
-				--ha-button-height, 40px: 36px;
+				transition: border-radius var(--md-sys-motion-expressive-spatial-fast);
+
+				--ha-button-height: 40px;
 			}
 			.create::after,
 			.delete::after {
 				width: 120px;
 			}
 			.create {
-				--color: var(--primary-color);
+				--background: var(--md-sys-color-secondary-container,
+					var(--secondary-background-color)
+				);
+				--color: var(--md-sys-color-on-secondary-container, 
+					var(--text-primary-color)
+				);
 			}
 			.delete {
-				--color: var(--error-color);
-			}
-			@media (hover: hover) {
-				.create:hover,
-				.delete:hover {
-					--ha-button-border-radius: var(--md-sys-shape-corner-small, 8px);
-				}
+				--background: var(--error-color);
+				--color: var(--on-error-color);
 			}
 			.create:focus-visible,
 			.delete:focus-visible,
