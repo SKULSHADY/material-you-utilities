@@ -50,9 +50,6 @@ slot {
 		border-radius var(--md-sys-motion-expressive-spatial-fast);
 }
 @media (hover: hover) {
-	.button:hover {
-		--ha-button-border-radius: var(--md-sys-shape-corner-small);
-	}
 	.button:hover::after {
 		opacity: 0.08;
 	}

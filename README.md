@@ -313,7 +313,7 @@ card_mod:
 
 ## [Buttons](https://m3.material.io/components/buttons/overview)
 
-Basic buttons that appear in many menus and some cards. They have rounded corners that expressively become more square when hovered over or pressed. All buttons follow the small size specification.
+Basic buttons that appear in many menus and some cards. They have rounded corners that expressively become more square when pressed or focused. All buttons follow the small size specification.
 
 ### Tonal Buttons
 
