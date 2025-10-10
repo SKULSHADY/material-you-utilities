@@ -755,7 +755,7 @@ export class MaterialYouConfigCard extends LitElement {
 				margin: 10px;
 
 				--color: var(--secondary-text-color);
-				--ha-button-height, 40px: 36px;
+				--ha-button-height: 40px;
 				--mdc-icon-size: 20px;
 			}
 			.more-info {
@@ -765,7 +765,7 @@ export class MaterialYouConfigCard extends LitElement {
 				margin: 8px 4px;
 
 				--color: var(--state-icon-color);
-				--ha-button-height, 40px: 40px;
+				--ha-button-height: 40px;
 				--mdc-icon-size: 24px;
 			}
 			.more-info::after,
@@ -778,13 +778,20 @@ export class MaterialYouConfigCard extends LitElement {
 				height: var(--ha-button-height, 40px);
 				width: 120px;
 				border-radius: var(--ha-button-border-radius);
-				transition: border-radius var(--md-sys-motion-expressive-spatial-fast);
+				transition: border-radius
+					var(--md-sys-motion-expressive-spatial-fast);
 
 				font-family: var(--font-family);
 				font-size: var(--md-sys-typescale-label-large-size, 14px);
 				font-weight: var(--md-sys-typescale-label-large-weight, 500);
-				line-height: var(--md-sys-typescale-label-large-line-height, 20px);
-				letter-spacing: var(--md-sys-typescale-label-large-tracking, 0.1px);
+				line-height: var(
+					--md-sys-typescale-label-large-line-height,
+					20px
+				);
+				letter-spacing: var(
+					--md-sys-typescale-label-large-tracking,
+					0.1px
+				);
 
 				--ha-button-height: 40px;
 			}
@@ -793,10 +800,12 @@ export class MaterialYouConfigCard extends LitElement {
 				width: 120px;
 			}
 			.create {
-				--background: var(--md-sys-color-secondary-container,
+				--background: var(
+					--md-sys-color-secondary-container,
 					var(--secondary-background-color)
 				);
-				--color: var(--md-sys-color-on-secondary-container, 
+				--color: var(
+					--md-sys-color-on-secondary-container,
 					var(--text-primary-color)
 				);
 			}
@@ -808,7 +817,10 @@ export class MaterialYouConfigCard extends LitElement {
 			.delete:focus-visible,
 			.create:active,
 			.delete:active {
-				--ha-button-border-radius: var(--md-sys-shape-corner-small, 8px);
+				--ha-button-border-radius: var(
+					--md-sys-shape-corner-small,
+					8px
+				);
 			}
 
 			.description {
