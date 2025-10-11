@@ -347,9 +347,9 @@ Uses primary colors with no background or outline.
 
 - The Material Design specification has five variations, but Home Assistant's new `ha-button` parent component only supports four. Home Assistant itself only uses three variants.
 
-### Button Groups
+### [Button Groups](https://m3.material.io/components/button-groups/overview)
 
-A group of buttons used as a selector. The selected button uses the tonal color scheme, whie the other buttons use the filled color scheme and have less round corners.
+A group of buttons used as a selector. Uses the filled button variant.
 
 <img src="https://raw.githubusercontent.com/Nerwyn/material-you-utilities/main/assets/button-group.png" width="200"/>
 
