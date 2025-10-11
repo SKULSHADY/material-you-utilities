@@ -44,7 +44,7 @@ slot {
 	z-index: 1;
 	background-color: var(--state-layer-color);
 	opacity: 0;
-	border-radius: var(--ha-button-border-radius);
+	border-radius: inherit;
 	transition:
 		opacity var(--md-sys-motion-expressive-effects-fast),
 		border-radius var(--md-sys-motion-expressive-spatial-fast);
@@ -54,8 +54,8 @@ slot {
 		opacity: 0.08;
 	}
 }
-.button:focus-visible,
-.button:active {
+:host(:not(.wa-button-group__button)) .button:focus-visible,
+:host(:not(.wa-button-group__button)) .button:active {
 	--ha-button-border-radius: var(--md-sys-shape-corner-small);
 }
 .button:focus-visible::after,
@@ -133,7 +133,47 @@ slot {
 	--state-layer-color: var(--on-error-color);
 }
 
-/* Change border radius of unselected toggle group button */
-:host([appearance~='filled'].wa-button-group__button) {
-	--ha-button-border-radius: var(--md-sys-shape-corner-small);
+/* Toggle button groups */
+
+/* Change styles of unselected buttons */
+:host(.wa-button-group__button) .button {
+	--ha-button-background-color: var(--md-sys-color-surface-container);
+	--ha-button-text-color: var(--md-sys-color-on-surface-variant);
+	--state-layer-color: var(--md-sys-color-on-surface-variant);
+}
+:host(.wa-button-group__button-inner) .button {
+	border-radius: var(--md-sys-shape-corner-small);
+}
+:host(.wa-button-group__button-first) .button {
+	border-start-end-radius: var(--md-sys-shape-corner-small);
+	border-end-end-radius: var(--md-sys-shape-corner-small);
+}
+:host(.wa-button-group__button-last) .button {
+	border-start-start-radius: var(--md-sys-shape-corner-small);
+	border-end-start-radius: var(--md-sys-shape-corner-small);
+}
+
+/* Change styles of selected button */
+:host([appearance~='accent'].wa-button-group__button) .button {
+	border-radius: var(--ha-button-border-radius);
+
+	--ha-button-background-color: var(--md-sys-color-primary);
+	--ha-button-text-color: var(--md-sys-color-on-primary);
+	--state-layer-color: var(--md-sys-color-on-primary);
+}
+
+/* Change styles when pressed */
+:host(.wa-button-group__button-inner) .button:focus-visible,
+:host(.wa-button-group__button-inner) .button:active {
+	border-radius: var(--md-sys-shape-corner-extra-small);
+}
+:host(.wa-button-group__button-first) .button:focus-visible,
+:host(.wa-button-group__button-first) .button:active {
+	border-start-end-radius: var(--md-sys-shape-corner-extra-small);
+	border-end-end-radius: var(--md-sys-shape-corner-extra-small);
+}
+:host(.wa-button-group__button-last) .button:focus-visible,
+:host(.wa-button-group__button-last) .button:active {
+	border-start-start-radius: var(--md-sys-shape-corner-extra-small);
+	border-end-start-radius: var(--md-sys-shape-corner-extra-small);
 }

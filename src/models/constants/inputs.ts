@@ -84,7 +84,7 @@ It usually does not appear in the theme itself.`,
 	spec: {
 		domain: 'input_select',
 		default: '2021',
-		name: 'Specification Version',
+		name: 'Specification',
 		description: `The palette rules to use for the scheme.
 2021 is the original Material You palettes.
 2025 is the Material Expressive palettes.`,
@@ -96,8 +96,7 @@ It usually does not appear in the theme itself.`,
 		},
 		card: {
 			config: {
-				select: {
-					mode: 'box',
+				button_toggle: {
 					options: ['2021', '2025'],
 				},
 			},
@@ -119,8 +118,7 @@ Not available for the 2021 spec.`,
 		},
 		card: {
 			config: {
-				select: {
-					mode: 'box',
+				button_toggle: {
 					options: [
 						{ value: 'phone', label: 'Phone' },
 						{ value: 'watch', label: 'Watch' },

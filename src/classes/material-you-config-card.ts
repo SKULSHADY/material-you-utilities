@@ -672,7 +672,7 @@ export class MaterialYouConfigCard extends LitElement {
 			}
 			.row {
 				display: flex;
-				align-items: flex-end;
+				align-items: center;
 			}
 			.row:empty {
 				display: none;
@@ -862,8 +862,8 @@ export class MaterialYouConfigCard extends LitElement {
 			.semantic-colors {
 				position: absolute;
 				width: calc(100% - 44px);
-				margin: 0 12px;
-				translate: 0 12px;
+				margin: 0 6px;
+				translate: 0 32px;
 				border-radius: 4px;
 				overflow: hidden;
 			}
