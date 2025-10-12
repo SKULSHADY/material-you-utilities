@@ -35,7 +35,8 @@ import hueLikeLightCard from './hue-like-light-card.css';
 import huiEntitiesCardEditor from './hui-entities-card-editor.css';
 import huiEntitiesCard from './hui-entities-card.css';
 import huiGridSection from './hui-grid-section.css';
-import huiRootHideSlTabGroup from './hui-root-hide-ha-tab-group.css';
+import huiRootHideHaTabGroup from './hui-root-hide-ha-tab-group.css';
+import huiRootHideToolbar from './hui-root-hide-toolbar.css';
 import huiRoot from './hui-root.css';
 import huiViewHeader from './hui-view-header.css';
 import huiViewVisibilityEditor from './hui-view-visibility-editor.css';
@@ -98,5 +99,6 @@ export const cardTypes: Record<string, string> = {
 
 /**
  * Hide the navigation bar
+ * Hide the application bar
  */
-export const hideNavigationBar = huiRootHideSlTabGroup;
+export { huiRootHideHaTabGroup, huiRootHideToolbar };

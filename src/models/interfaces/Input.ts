@@ -12,6 +12,7 @@ export type InputField =
 	| 'contrast'
 	| 'styles'
 	| 'card_type'
+	| 'appbar'
 	| 'navbar'
 	| 'harmonize'
 	| 'image_url'

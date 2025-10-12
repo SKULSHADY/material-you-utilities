@@ -1,0 +1,6 @@
+/* Hide toolbar */
+html {
+	--ha-menu-button-opacity: 0;
+	--toolbar-display: none;
+	--view-padding-top: 0px;
+}

@@ -1,4 +1,5 @@
 /* Hide navigation bar */
 html {
 	--navbar-display: none;
+	--view-padding-bottom: 0px;
 }

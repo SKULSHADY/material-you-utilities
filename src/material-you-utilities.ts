@@ -8,6 +8,7 @@ import {
 	getHomeAssistantMainAsync,
 	querySelectorAsync,
 } from './utils/async';
+import { hideAppbar } from './utils/handlers/appbar';
 import { setCardType } from './utils/handlers/cards';
 import { setCSSFromFile } from './utils/handlers/css';
 import { setBaseColorFromImage } from './utils/handlers/image';
@@ -89,6 +90,7 @@ async function main() {
 				setTheme,
 				setCardType,
 				setCSSFromFile,
+				hideAppbar,
 				hideNavbar,
 			];
 			for (const handler of handlers) {

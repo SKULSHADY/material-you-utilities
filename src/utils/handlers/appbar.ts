@@ -1,4 +1,4 @@
-import { huiRootHideHaTabGroup } from '../../css';
+import { huiRootHideToolbar } from '../../css';
 import { THEME_NAME, THEME_TOKEN } from '../../models/constants/theme';
 import { HassElement } from '../../models/interfaces';
 import { IHandlerArguments } from '../../models/interfaces/Input';
@@ -6,40 +6,40 @@ import { getEntityIdAndValue } from '../common';
 import { debugToast, mdLog } from '../logging';
 import { applyStyles, loadStyles } from './styles';
 
-const STYLE_ID = `${THEME_TOKEN}-navbar`;
+const STYLE_ID = `${THEME_TOKEN}-appbar`;
 
-/** Hide the navigation bar */
-export async function hideNavbar(args: IHandlerArguments) {
+/** Hide the header */
+export async function hideAppbar(args: IHandlerArguments) {
 	const hass = (document.querySelector('home-assistant') as HassElement).hass;
 
 	try {
 		const themeName = hass?.themes?.theme ?? '';
 		if (themeName.includes(THEME_NAME)) {
-			const value = getEntityIdAndValue('navbar', args.id).value || 'on';
+			const value = getEntityIdAndValue('appbar', args.id).value || 'on';
 			if (value == 'on') {
-				showNavbar();
+				showHeader();
 				return;
 			}
 
 			const html = document.querySelector('html') as HTMLElement;
-			applyStyles(html, STYLE_ID, loadStyles(huiRootHideHaTabGroup));
+			applyStyles(html, STYLE_ID, loadStyles(huiRootHideToolbar));
 
-			mdLog(html, 'Navigation bar hidden.', true);
+			mdLog(html, 'Application bar hidden.', true);
 		} else {
-			showNavbar();
+			showHeader();
 		}
 	} catch (e) {
 		console.error(e);
 		debugToast(String(e));
-		showNavbar();
+		showHeader();
 	}
 }
 
-async function showNavbar() {
+async function showHeader() {
 	const html = document.querySelector('html') as HTMLElement;
 	const style = html?.querySelector(`#${STYLE_ID}`);
 	if (style) {
 		html?.removeChild(style);
-		mdLog(html, 'Navigation bar unhidden.', true);
+		mdLog(html, 'Application bar unhidden.', true);
 	}
 }

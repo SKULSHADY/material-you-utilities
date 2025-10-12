@@ -1,3 +1,4 @@
+import { hideAppbar } from '../../utils/handlers/appbar';
 import { setCardType } from '../../utils/handlers/cards';
 import { setCSSFromFile } from '../../utils/handlers/css';
 import { harmonize } from '../../utils/handlers/harmonize';
@@ -178,6 +179,24 @@ Does not apply to cards that are explicitly set to outlined like in settings.`,
 		},
 		handler: setCardType,
 	},
+	appbar: {
+		domain: 'input_boolean',
+		default: 'on',
+		name: 'Show Application Bar',
+		description: 'Show/hide the application bar at the top of views.',
+		init: {
+			config: {
+				icon: 'mdi:page-layout-header',
+			},
+		},
+		card: {
+			config: {
+				boolean: {},
+			},
+			tabBarIndex: 1,
+		},
+		handler: hideAppbar,
+	},
 	navbar: {
 		domain: 'input_boolean',
 		default: 'on',
@@ -186,7 +205,7 @@ Does not apply to cards that are explicitly set to outlined like in settings.`,
 Does not restore the default Home Assistant navigation bar.`,
 		init: {
 			config: {
-				icon: 'mdi:navigation',
+				icon: 'mdi:page-layout-footer',
 			},
 		},
 		card: {
