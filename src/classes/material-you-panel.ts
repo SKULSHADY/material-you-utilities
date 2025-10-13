@@ -29,7 +29,7 @@ export class MaterialYouPanel extends LitElement {
 
 	buildHeader() {
 		const moduleVersion = packageInfo.version;
-		const themeVersion = this.hass.themes.themes[THEME_NAME]['version'];
+		const themeVersion = this.hass.themes.themes[THEME_NAME]?.version;
 
 		return html`<div class="header">
 			<ha-menu-button
@@ -150,13 +150,13 @@ export class MaterialYouPanel extends LitElement {
 		}
 
 		const warnings = html`
-			${'Material Rounded' in this.hass.themes.themes
+			${this.hass.themes.themes['Material Rounded']
 				? buildAlertBox(
 						`Your theme install is corrupted! The legacy Material Rounded theme was not properly removed and is possibly overwriting ${THEME_NAME} Theme. Delete the config/themes/material_rounded folder from your Home Assistant server.`,
 						'error',
 					)
 				: ''}
-			${!(THEME_NAME in this.hass.themes.themes)
+			${!this.hass.themes.themes[THEME_NAME]
 				? buildAlertBox(
 						`You do not have ${THEME_NAME} Theme installed! This module is made to work with ${THEME_NAME} Theme and will not function properly otherwise. Install it using HACS.`,
 						'error',

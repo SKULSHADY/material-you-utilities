@@ -1,12 +1,16 @@
 import { elements } from '../../css';
 import { THEME_NAME, THEME_TOKEN } from '../../models/constants/theme';
 import { HassElement } from '../../models/interfaces';
-import { getHomeAssistantMainAsync, querySelectorAsync } from '../async';
+import {
+	getHomeAssistantMainAsync,
+	handleWhenReady,
+	querySelectorAsync,
+} from '../async';
 import { getEntityIdAndValue } from '../common';
 
 // Theme check variables
 let theme = '';
-let shouldSetStyles = true;
+let shouldSetStyles = false;
 const explicitlyStyledElements = [
 	'home-assistant',
 	'home-assistant-main',
@@ -156,49 +160,39 @@ function observeThenApplyStyles(element: HTMLElement) {
 /**
  * Apply styles to custom elements on a timeout
  * @param {HTMLElement} element
- * @param {number} ms
  */
 function applyStylesOnTimeout(element: HTMLElement, ms: number = 10) {
-	if (ms > 20000) {
-		return;
-	}
-
-	if (!element.shadowRoot?.children.length) {
-		setTimeout(() => applyStylesOnTimeout(element, ms * 2), ms);
-		return;
-	}
-
-	applyStylesToShadowRoot(element);
+	handleWhenReady(
+		() => {
+			applyStylesToShadowRoot(element);
+		},
+		() => !element.shadowRoot?.children.length,
+	);
 }
 
 /**
  * Explicitly apply styles to top level elements
- * @param {number} ms
  */
-async function applyExplicitStyles(ms: number = 10) {
-	if (ms > 20000) {
-		return;
-	}
-
-	checkTheme();
-
-	// Recall the function with a longer timeout
-	if (!theme) {
-		setTimeout(() => applyExplicitStyles(ms * 2), ms);
-		return;
-	}
-
-	if (shouldSetStyles) {
-		const haMain = await getHomeAssistantMainAsync();
-		const ha = await querySelectorAsync(document, 'home-assistant');
-		const haDrawer = await querySelectorAsync(
-			haMain.shadowRoot as ShadowRoot,
-			'ha-drawer',
-		);
-		applyStylesToShadowRoot(ha);
-		applyStylesToShadowRoot(haMain);
-		applyStylesToShadowRoot(haDrawer);
-	}
+async function applyExplicitStyles() {
+	handleWhenReady(
+		async () => {
+			if (shouldSetStyles) {
+				const haMain = await getHomeAssistantMainAsync();
+				const ha = await querySelectorAsync(document, 'home-assistant');
+				const haDrawer = await querySelectorAsync(
+					haMain.shadowRoot as ShadowRoot,
+					'ha-drawer',
+				);
+				applyStylesToShadowRoot(ha);
+				applyStylesToShadowRoot(haMain);
+				applyStylesToShadowRoot(haDrawer);
+			}
+		},
+		() => {
+			checkTheme();
+			return Boolean(theme);
+		},
+	);
 }
 
 /**

@@ -446,7 +446,7 @@ export class MaterialYouConfigCard extends LitElement {
 		if (this.darkMode != this.hass.themes?.darkMode) {
 			this.darkMode = this.hass.themes?.darkMode;
 			const mode =
-				this.hass.themes?.themes[THEME_NAME].modes?.[
+				this.hass.themes?.themes[THEME_NAME]?.modes?.[
 					this.darkMode ? 'dark' : 'light'
 				] ?? {};
 			const styles: Record<string, string> = {};
