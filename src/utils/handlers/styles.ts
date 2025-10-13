@@ -161,12 +161,12 @@ function observeThenApplyStyles(element: HTMLElement) {
  * Apply styles to custom elements on a timeout
  * @param {HTMLElement} element
  */
-function applyStylesOnTimeout(element: HTMLElement, ms: number = 10) {
+function applyStylesOnTimeout(element: HTMLElement) {
 	handleWhenReady(
 		() => {
 			applyStylesToShadowRoot(element);
 		},
-		() => !element.shadowRoot?.children.length,
+		() => Boolean(element.shadowRoot?.children.length),
 	);
 }
 
