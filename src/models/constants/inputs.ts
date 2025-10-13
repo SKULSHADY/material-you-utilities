@@ -110,7 +110,7 @@ It usually does not appear in the theme itself.`,
 		default: 'phone',
 		name: 'Platform',
 		description: `The target platform for the theme.
-Not available for the 2021 spec.`,
+Not available for the 2021 specification.`,
 		init: {
 			config: {
 				icon: 'mdi:devices',
@@ -202,7 +202,7 @@ Does not apply to cards that are explicitly set to outlined like in settings.`,
 		default: 'on',
 		name: 'Show Navigation Bar',
 		description: `Show/hide the navigation bar at the bottom of views.
-Does not restore the default Home Assistant navigation bar.`,
+Does not restore the default Home Assistant view tabs.`,
 		init: {
 			config: {
 				icon: 'mdi:page-layout-footer',
