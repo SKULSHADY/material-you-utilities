@@ -10,6 +10,12 @@ const STYLE_ID = `${THEME_TOKEN}-navbar`;
 
 /** Hide the navigation bar */
 export async function hideNavbar(args: IHandlerArguments) {
+	if (
+		args.targets?.some((target) => target.nodeName.includes('CONFIG-CARD'))
+	) {
+		return;
+	}
+
 	const hass = (document.querySelector('home-assistant') as HassElement).hass;
 
 	try {
