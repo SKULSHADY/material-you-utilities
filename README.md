@@ -172,9 +172,13 @@ The Material Design 3 specification has [three different card type style variati
 
 Some cards, like those found in the configuration pages, already have the attribute `outlined`. This attribute will supersede the default `elevated` card style or user chosen card type.
 
+#### Show Application Bar
+
+You can choose to hide the application bar shown at the top of views by toggline this setting off. This is useful for smaller tablet displays that do not need the application bar buttons. The menu button to open the sidebar is still clickable despite being hidden to prevent users from being locked into a view.
+
 #### Show Navigation Bar
 
-You can choose to disable the navigation bar shown in views by toggling this setting off. This is useful if you want to use an alternate view navigation system such as [Navbar Card](https://github.com/joseluis9595/lovelace-navbar-card). Note that this does not disable navigation bar styles or restore the default view tabs, it hides them entirely. Requires style upgrades to be enabled.
+You can choose to hide the navigation bar shown at the bottom of views by toggling this setting off. This is useful if you want to use an alternate view navigation system such as [Navbar Card](https://github.com/joseluis9595/lovelace-navbar-card). Note that this does not disable navigation bar styles or restore the default view tabs, it hides them entirely. Requires style upgrades to be enabled.
 
 ### Other
 
