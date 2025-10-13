@@ -97,8 +97,10 @@ export const cardTypes: Record<string, string> = {
 	transparent: haCardTransparent,
 };
 
-/**
- * Hide the navigation bar
- * Hide the application bar
- */
-export { huiRootHideHaTabGroup, huiRootHideToolbar };
+export {
+	// Hide navigation bar
+	huiRootHideHaTabGroup,
+
+	// Hide application bar
+	huiRootHideToolbar,
+};
