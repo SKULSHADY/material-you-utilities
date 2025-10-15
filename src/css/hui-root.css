@@ -343,6 +343,8 @@ ha-menu-button {
 			) +
 			env(safe-area-inset-bottom)
 	);
+
+	--footer-offset: calc(var(--footer-height) + env(safe-area-inset-bottom));
 }
 
 /* Fix edit mode view top padding and buttons */
