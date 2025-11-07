@@ -1,0 +1,4 @@
+/* Remove bottom border */
+:host {
+	border-bottom: none;
+}

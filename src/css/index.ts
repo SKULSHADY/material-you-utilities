@@ -7,6 +7,7 @@ import haCardTransparent from './ha-card-transparent.css';
 import haCard from './ha-card.css';
 import haConfigInfo from './ha-config-info.css';
 import haConfigSectionUpdates from './ha-config-section-updates.css';
+import haDialogHeader from './ha-dialog-header.css';
 import haDialog from './ha-dialog.css';
 import haDrawer from './ha-drawer.css';
 import haEntityToggle from './ha-entity-toggle.css';
@@ -29,6 +30,7 @@ import haTextfield from './ha-textfield.css';
 import haToast from './ha-toast.css';
 import haTopAppBarFixed from './ha-top-app-bar-fixed.css';
 import haUserBadge from './ha-user-badge.css';
+import haWaDialog from './ha-wa-dialog.css';
 import homeAssistantMain from './home-assistant-main.css';
 import homeAssistant from './home-assistant.css';
 import hueLikeLightCard from './hue-like-light-card.css';
@@ -51,7 +53,9 @@ export const elements: Record<string, string> = {
 	'ha-card': haCard,
 	'ha-config-info': haConfigInfo,
 	'ha-dialog': haDialog,
+	'ha-wa-dialog': haWaDialog,
 	'ha-md-dialog': haMdDialog,
+	'ha-dialog-header': haDialogHeader,
 	'ha-entity-toggle': haEntityToggle,
 	'ha-fab': haFab,
 	'ha-grid-layout-slider': haGridLayoutSlider,

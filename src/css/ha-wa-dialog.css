@@ -1,0 +1,28 @@
+/* Fix background color, elevation, animation, and background transition */
+:host {
+	--md-list-container-color: transparent;
+}
+wa-dialog::part(dialog) {
+	background-color: var(--md-sys-color-surface-container-high);
+	box-shadow: var(--md-sys-elevation-level3);
+	animation: show-dialog var(--md-sys-motion-expressive-spatial-fast);
+	transition: background-color var(--md-sys-motion-expressive-effects-slow);
+}
+
+/* Fix slider thumb background color */
+wa-dialog::part(body) {
+	--ha-slider-thumb-negative-color: var(--ha-dialog-surface-background);
+}
+
+/* Apply full-screen dialog styles */
+@media (max-width: 450px), (max-height: 500px) {
+	wa-dialog::part(dialog) {
+		background-color: var(--md-sys-color-surface);
+	}
+	wa-dialog:has(ha-dialog-header[show-border])::part(dialog) {
+		background-color: var(--md-sys-color-surface-container);
+	}
+	ha-dialog-header {
+		background: var(--md-sys-color-surface);
+	}
+}
