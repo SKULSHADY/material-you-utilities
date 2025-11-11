@@ -179,6 +179,7 @@ function observeThenApplyStyles(element: HTMLElement) {
 	});
 
 	observer.observe(element, observeAll);
+	onObserve(element);
 }
 
 /**
