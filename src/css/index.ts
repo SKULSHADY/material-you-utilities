@@ -35,7 +35,7 @@ import homeAssistantMain from './home-assistant-main.css';
 import homeAssistant from './home-assistant.css';
 import hueLikeLightCard from './hue-like-light-card.css';
 import huiEntitiesCardEditor from './hui-entities-card-editor.css';
-import huiEntitiesCard from './hui-entities-card.css';
+import huiEntitiesToggle from './hui-entities-toggle.css';
 import huiGridSection from './hui-grid-section.css';
 import huiRootHideHaTabGroup from './hui-root-hide-ha-tab-group.css';
 import huiRootHideToolbar from './hui-root-hide-toolbar.css';
@@ -79,7 +79,7 @@ export const elements: Record<string, string> = {
 	'ha-toast': haToast,
 	'ha-user-badge': haUserBadge,
 	'ha-config-section-updates': haConfigSectionUpdates,
-	'hui-entities-card': huiEntitiesCard,
+	'hui-entities-toggle': huiEntitiesToggle,
 	'hui-entities-card-editor': huiEntitiesCardEditor,
 	'hui-grid-section': huiGridSection,
 	'hui-root': huiRoot,
