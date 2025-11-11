@@ -107,7 +107,10 @@ function applyStylesToShadowRoot(element: HTMLElement) {
 		applyStyles(
 			shadowRoot,
 			THEME_TOKEN,
-			loadStyles(elements[element.nodeName.toLowerCase()]),
+			loadStyles(
+				elements[element.nodeName.toLowerCase()] ||
+					elements['hui-card'],
+			),
 		);
 	}
 }
@@ -134,26 +137,47 @@ const observeAll = {
 	attributes: true,
 };
 
+const HUI_CARD_CHILD_REGEX = /^HUI-.*-CARD$/;
+
 /**
  * Apply styles to custom elements when a mutation is observed and the shadow-root is present
  * @param {HTMLElement} element
  */
 function observeThenApplyStyles(element: HTMLElement) {
-	const observer = new MutationObserver(() => {
-		if (hasStyles(element)) {
-			// No need to continue observing
+	const onObserve = (el: HTMLElement) => {
+		// No need to continue observing
+		if (hasStyles(el)) {
 			observer.disconnect();
-		} else if (element.shadowRoot) {
-			if (element.shadowRoot.children.length) {
-				// Shadow-root exists and is populated, apply styles
-				applyStylesToShadowRoot(element);
+			return;
+		}
+
+		if (el.shadowRoot) {
+			// Shadow-root exists and is populated, apply styles
+			if (el.shadowRoot.children.length) {
+				applyStylesToShadowRoot(el);
 				observer.disconnect();
-			} else {
-				// Shadow-root exists but is empty, observe it
-				observer.observe(element.shadowRoot, observeAll);
+				return;
+			}
+
+			// Shadow-root exists but is empty, observe it
+			observer.observe(el.shadowRoot, observeAll);
+		}
+	};
+
+	const observer = new MutationObserver(() => {
+		onObserve(element);
+
+		// Observe and apply styles to hui-card children
+		if (element.nodeName == 'HUI-CARD') {
+			for (const child of element.children) {
+				if (HUI_CARD_CHILD_REGEX.test(child.nodeName)) {
+					observer.observe(child as HTMLElement, observeAll);
+					onObserve(child as HTMLElement);
+				}
 			}
 		}
 	});
+
 	observer.observe(element, observeAll);
 }
 

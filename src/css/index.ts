@@ -34,6 +34,7 @@ import haWaDialog from './ha-wa-dialog.css';
 import homeAssistantMain from './home-assistant-main.css';
 import homeAssistant from './home-assistant.css';
 import hueLikeLightCard from './hue-like-light-card.css';
+import huiCardChild from './hui-card-child.css';
 import huiEntitiesCardEditor from './hui-entities-card-editor.css';
 import huiEntitiesToggle from './hui-entities-toggle.css';
 import huiGridSection from './hui-grid-section.css';
@@ -79,6 +80,7 @@ export const elements: Record<string, string> = {
 	'ha-toast': haToast,
 	'ha-user-badge': haUserBadge,
 	'ha-config-section-updates': haConfigSectionUpdates,
+	'hui-card': huiCardChild, // applied to child hui-*-card
 	'hui-entities-toggle': huiEntitiesToggle,
 	'hui-entities-card-editor': huiEntitiesCardEditor,
 	'hui-grid-section': huiGridSection,
