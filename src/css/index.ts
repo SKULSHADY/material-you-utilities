@@ -46,9 +46,9 @@ import huiViewVisibilityEditor from './hui-view-visibility-editor.css';
 import moreInfoMediaPlayer from './more-info-media_player.css';
 
 /**
- * Home Assistant (and other) custom elements to patch and their corresponding styles
+ * Home Assistant (and other) custom elements to patch when they are added to DOM
  */
-export const elements: Record<string, string> = {
+export const implicitElements: Record<string, string> = {
 	'ha-assist-chip': haAssistChip,
 	'ha-button': haButton,
 	'ha-card': haCard,
@@ -67,7 +67,6 @@ export const elements: Record<string, string> = {
 	'ha-md-list-item': haMdListItem,
 	'ha-md-menu-item': haMdMenuItem,
 	'ha-menu-button': haMenuButton,
-	'ha-drawer': haDrawer,
 	'ha-select': haSelect,
 	'ha-select-box': haSelectBox,
 	'ha-settings-row': haSettingsRow,
@@ -88,9 +87,24 @@ export const elements: Record<string, string> = {
 	'hui-view-header': huiViewHeader,
 	'hui-view-visibility-editor': huiViewVisibilityEditor,
 	'hue-like-light-card': hueLikeLightCard,
+	'more-info-media_player': moreInfoMediaPlayer,
+};
+
+/**
+ * Home Assistant custom elements to explicitly apply styles to on initial load
+ */
+export const explicitElements: Record<string, string> = {
 	'home-assistant': homeAssistant,
 	'home-assistant-main': homeAssistantMain,
-	'more-info-media_player': moreInfoMediaPlayer,
+	'ha-drawer': haDrawer,
+};
+
+/**
+ * All custom elements to patch
+ */
+export const elements = {
+	...implicitElements,
+	...explicitElements,
 };
 
 /**

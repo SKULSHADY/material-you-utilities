@@ -1,4 +1,4 @@
-import { elements } from '../../css';
+import { elements, implicitElements } from '../../css';
 import { THEME_NAME, THEME_TOKEN } from '../../models/constants/theme';
 import { HassElement } from '../../models/interfaces';
 import {
@@ -11,11 +11,6 @@ import { getEntityIdAndValue } from '../common';
 // Theme check variables
 let theme = '';
 let shouldSetStyles = false;
-const explicitlyStyledElements = [
-	'home-assistant',
-	'home-assistant-main',
-	'ha-drawer',
-];
 
 /**
  * Check if theme is a "Material You" variant and set should set styles flag
@@ -233,7 +228,7 @@ export async function setStyles(target: typeof globalThis) {
 		constructor,
 		options,
 	) {
-		if (elements[name] && !explicitlyStyledElements.includes(name)) {
+		if (implicitElements[name]) {
 			class PatchedElement extends constructor {
 				constructor(...args: any[]) {
 					super(...args);
