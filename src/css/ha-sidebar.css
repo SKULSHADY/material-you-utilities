@@ -95,8 +95,8 @@ ha-md-list-item.selected {
 
 	--md-list-item-flex-direction: column;
 	--ha-md-list-item-gap: 10px;
-	--md-ripple-hover-color: transparent;
-	--md-ripple-pressed-color: transparent;
+	--ha-ripple-hover-color: transparent;
+	--ha-ripple-pressed-color: transparent;
 }
 
 /* Display label when not expanded */
