@@ -1,6 +1,10 @@
 import { Connection } from 'home-assistant-js-websocket';
 import { html } from 'lit';
-import { HomeAssistant, IConfirmation } from '../models/interfaces';
+import {
+	CardHelpers,
+	HomeAssistant,
+	IConfirmation,
+} from '../models/interfaces';
 import {
 	EntityRegistryEntryUpdateParams,
 	InputDomain,
@@ -111,6 +115,8 @@ export async function updateEntityRegistryEntry(
 	});
 }
 
+let helpers: CardHelpers;
+
 /**
  * Use a hass-action event to call a confirmation, and use ll-custom and dialog-closed listeners to determine the result
  * @param {Node} node Node to fire the event on
@@ -126,47 +132,15 @@ export async function handleConfirmation(
 		return true;
 	}
 
-	// Use hass-action to fire a dom event with a confirmation
-	const event = new Event('hass-action', {
-		bubbles: true,
-		composed: true,
-	});
-	event.detail = {
-		action: 'tap',
-		config: {
-			tap_action: {
-				action: 'fire-dom-event',
-				confirmation,
-			},
-		},
-	};
-	node.dispatchEvent(event);
+	if (!helpers) {
+		helpers = await window.loadCardHelpers();
+	}
 
-	return new Promise((resolve) => {
-		// Cleanup timeout and event listeners
-		let cancelTimeout: ReturnType<typeof setTimeout>;
-		const cleanup = () => {
-			clearTimeout(cancelTimeout);
-			window.removeEventListener('ll-custom', confirmTrue);
-			window.removeEventListener('dialog-closed', confirmFalse);
-		};
-
-		// ll-custom event is fired when the user accepts the confirmation
-		const confirmTrue = () => {
-			cleanup();
-			resolve(true);
-		};
-		window.addEventListener('ll-custom', confirmTrue);
-
-		// dialog-closed event is always fired
-		// The timeout allows the ll-custom listener to resolve true before this one resolves false
-		const confirmFalse = () => {
-			cancelTimeout = setTimeout(() => {
-				cleanup();
-				resolve(false);
-			}, 100);
-		};
-		window.addEventListener('dialog-closed', confirmFalse);
+	return await helpers.showConfirmationDialog(node, {
+		text: (confirmation as IConfirmation)?.text,
+		confirm: () => true,
+		cancel: () => false,
+		destructive: true,
 	});
 }
 

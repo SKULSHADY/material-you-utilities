@@ -1,3 +1,5 @@
+import { CardHelpers } from '../interfaces';
+
 export {};
 
 declare global {
@@ -17,6 +19,7 @@ declare global {
 			browserID?: string;
 			browsers?: Record<string, Record<string, any>>;
 		};
+		loadCardHelpers: () => Promise<CardHelpers>;
 	}
 
 	interface Event {
