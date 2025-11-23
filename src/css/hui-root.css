@@ -318,7 +318,6 @@ ha-tab-group-tab[active]::after {
  * View top and bottom padding and buttons
  * Aware of presence of navigation bar, module hidden, or kiosk mode
  */
-
 ha-menu-button {
 	opacity: var(--ha-menu-button-opacity, 1);
 }
@@ -327,6 +326,9 @@ ha-menu-button {
 }
 .header:not(:has(ha-tab-group)) + #view {
 	--view-padding-bottom: 0px;
+}
+.edit-mode #view {
+	--view-padding-bottom: var(--kiosk-header-height, var(--footer-height));
 }
 #view {
 	padding-top: calc(
@@ -353,11 +355,6 @@ ha-menu-button {
 }
 .edit-mode .action-items {
 	display: flex;
-}
-.edit-mode #view {
-	padding-top: calc(
-		var(--view-padding-top, var(--header-height)) + env(safe-area-inset-top)
-	);
 }
 
 /* Header Cards pointer events fix */
