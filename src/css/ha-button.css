@@ -147,10 +147,14 @@ slot {
 :host(.wa-button-group__button-first) .button {
 	border-start-end-radius: var(--md-sys-shape-corner-small);
 	border-end-end-radius: var(--md-sys-shape-corner-small);
+	border-start-start-radius: calc(var(--ha-button-border-radius) / 2);
+	border-end-start-radius: calc(var(--ha-button-border-radius) / 2);
 }
 :host(.wa-button-group__button-last) .button {
 	border-start-start-radius: var(--md-sys-shape-corner-small);
 	border-end-start-radius: var(--md-sys-shape-corner-small);
+	border-start-end-radius: calc(var(--ha-button-border-radius) / 2);
+	border-end-end-radius: calc(var(--ha-button-border-radius) / 2);
 }
 
 /* Change styles of selected button */
