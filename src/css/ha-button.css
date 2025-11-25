@@ -23,13 +23,20 @@
 		var(--ha-button-background-color)
 	);
 	border-radius: var(--ha-button-border-radius);
-	transition: border-radius var(--md-sys-motion-expressive-spatial-fast);
+	transition:
+		border-radius var(--md-sys-motion-expressive-spatial-fast),
+		border-start-start-radius var(--md-sys-motion-expressive-spatial-fast),
+		border-start-end-radius var(--md-sys-motion-expressive-spatial-fast),
+		border-end-start-radius var(--md-sys-motion-expressive-spatial-fast),
+		border-end-end-radius var(--md-sys-motion-expressive-spatial-fast),
+		background-color var(--md-sys-motion-expressive-effects-fast);
 	-webkit-tap-highlight-color: transparent;
 
 	--mdc-icon-size: 20px;
 }
 slot {
 	color: var(--inherited-text-color, var(--ha-button-text-color));
+	transition: color var(--md-sys-motion-expressive-effects-fast);
 }
 
 /* State layer */

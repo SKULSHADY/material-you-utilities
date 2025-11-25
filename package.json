@@ -3,11 +3,12 @@
 	"version": "2.0.26",
 	"description": "Material You Utilities - Material Design 3 Color Theme Generation and Component Modification",
 	"main": "dist/material-you-utilities.js",
+	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "npx rspack && gzip -fk dist/material-you-utilities.min.js",
 		"prelint": "tsc --noemit",
-		"lint": "eslint --fix --config ./.eslintrc.config.cjs",
+		"lint": "eslint --fix --config ./eslint.config.js",
 		"setup": "git config --add core.hooksPath githooks && chmod +x githooks/pre-commit && npm i"
 	},
 	"lint-staged": {

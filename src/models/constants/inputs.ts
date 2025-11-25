@@ -165,8 +165,8 @@ Does not apply to cards that are explicitly set to outlined like in settings.`,
 		},
 		card: {
 			config: {
-				select: {
-					mode: 'dropdown',
+				button_toggle: {
+					// mode: 'dropdown',
 					options: [
 						{ value: 'elevated', label: 'Elevated' },
 						{ value: 'filled', label: 'Filled' },
