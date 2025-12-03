@@ -25,6 +25,12 @@ export interface CardHelpers {
 		dialogParams: AlertDialogParams,
 	) => Promise<void>;
 
+	/**
+	 * Show a confirmation dialog
+	 * @param {HTMLElement} element
+	 * @param {ConfirmationDialogParams} dialogParams
+	 * @returns {boolean}
+	 */
 	showConfirmationDialog: (
 		element: HTMLElement,
 		dialogParams: ConfirmationDialogParams,
