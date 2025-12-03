@@ -16,13 +16,14 @@ wa-dialog::part(body) {
 
 /* Apply full-screen dialog styles */
 @media (max-width: 450px), (max-height: 500px) {
-	wa-dialog::part(dialog) {
+	:host([type='standard']) wa-dialog::part(dialog) {
 		background-color: var(--md-sys-color-surface);
 	}
-	wa-dialog:has(ha-dialog-header[show-border])::part(dialog) {
+	:host([type='standard'])
+		wa-dialog:has(ha-dialog-header[show-border])::part(dialog) {
 		background-color: var(--md-sys-color-surface-container);
 	}
-	ha-dialog-header {
+	:host([type='standard']) ha-dialog-header {
 		background: var(--md-sys-color-surface);
 	}
 }
