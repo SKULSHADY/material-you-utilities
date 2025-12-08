@@ -1,0 +1,8 @@
+/* Expressive animations */
+.dialog.show {
+	animation: show-dialog var(--md-sys-motion-expressive-spatial-fast);
+}
+
+.dialog.hide {
+	animation: show-dialog var(--md-sys-motion-expressive-spatial-fast) reverse;
+}

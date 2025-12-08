@@ -1,11 +1,10 @@
-/* Fix background color, elevation, animation, and background transition */
+/* Fix background color, elevation, and background transition */
 :host {
 	--md-list-container-color: transparent;
 }
 wa-dialog::part(dialog) {
 	background-color: var(--md-sys-color-surface-container-high);
 	box-shadow: var(--md-sys-elevation-level3);
-	animation: show-dialog var(--md-sys-motion-expressive-spatial-fast);
 	transition: background-color var(--md-sys-motion-expressive-effects-slow);
 }
 
