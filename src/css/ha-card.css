@@ -41,3 +41,11 @@
 	--ha-card-border-width: 0;
 	--ha-card-border-color: transparent;
 }
+
+/* Energy period selector bottom position */
+:host(.period-selector) {
+	bottom: calc(
+		var(--kiosk-header-height, var(--footer-height, 0px)) +
+			var(--ha-space-4, 16px) + env(safe-area-inset-bottom)
+	);
+}
