@@ -22,7 +22,7 @@ import {
 import { setupSubscriptions } from '../utils/subscriptions';
 if (!customElements.get('disk-color-picker')) {
 	// HACS install causes this module to be defined twice, this squashes the error
-	require('disk-color-picker');
+	await import('disk-color-picker');
 }
 
 export class MaterialYouConfigCard extends LitElement {
@@ -112,7 +112,7 @@ export class MaterialYouConfigCard extends LitElement {
 				);
 				const domain = inputs[field as InputField].domain;
 				let service = services[domain];
-				const data: Record<string, any> = {
+				const data: Record<string, unknown> = {
 					entity_id: entityId,
 				};
 				switch (domain) {
@@ -180,11 +180,11 @@ export class MaterialYouConfigCard extends LitElement {
 		const field = (e.target as HTMLElement).getAttribute(
 			'field',
 		) as InputField;
-		let value = e.detail.value;
+		const value = e.detail.value;
 
 		const domain = inputs[field].domain;
-		let service = services[domain];
-		let data: Record<string, any> = {
+		const service = services[domain];
+		const data: Record<string, unknown> = {
 			entity_id: getEntityId(field, this.dataId),
 		};
 		switch (domain) {
@@ -245,7 +245,7 @@ export class MaterialYouConfigCard extends LitElement {
 		if (!e.repeat && ['Enter', ' '].includes(e.key)) {
 			e.preventDefault();
 
-			let handler: Function;
+			let handler: (e: MouseEvent, target: HTMLElement) => void;
 			const className = (e.target as HTMLElement).parentElement?.className
 				.replace('button', '')
 				.trim();
@@ -274,7 +274,7 @@ export class MaterialYouConfigCard extends LitElement {
 
 		const domain = inputs[field].domain;
 		let service = services[domain];
-		let data: Record<string, any> = {
+		const data: Record<string, unknown> = {
 			entity_id: getEntityId(field, this.dataId),
 		};
 		switch (domain) {
@@ -287,6 +287,7 @@ export class MaterialYouConfigCard extends LitElement {
 				break;
 			case 'input_boolean':
 				service = `turn_${inputs[field].default}`;
+				break;
 			default:
 				break;
 		}
@@ -418,7 +419,7 @@ export class MaterialYouConfigCard extends LitElement {
 			</div>`;
 		}
 
-		let config = inputs[field].card.config;
+		const config = inputs[field].card.config;
 		if (inputs[field].domain == 'input_number') {
 			config.min = this.hass.states[entityId]?.attributes?.min ?? -1;
 			config.max = this.hass.states[entityId]?.attributes?.max ?? 1;
@@ -483,7 +484,7 @@ export class MaterialYouConfigCard extends LitElement {
 			rowNames = rowNames.filter((name) => name != 'platform');
 		}
 
-		let rows: Partial<Record<InputField, TemplateResult | string>> = {};
+		const rows: Partial<Record<InputField, TemplateResult | string>> = {};
 		for (const field of rowNames) {
 			rows[field as InputField] = this.buildRow(field as InputField);
 		}

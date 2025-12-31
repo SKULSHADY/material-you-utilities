@@ -48,9 +48,12 @@ async function main() {
 						iframe,
 						'contentWindow',
 					);
-					setStyles(contentWindow);
+					setStyles(contentWindow as typeof globalThis);
 
-					const document = await getAsync(contentWindow, 'document');
+					const document = (await getAsync(
+						contentWindow as Node,
+						'document',
+					)) as Document;
 					const body = await querySelectorAsync(document, 'body');
 					const args = { targets: [body] };
 					const handlers = [setTheme, setCardType, setCSSFromFile];
@@ -120,7 +123,7 @@ async function main() {
 				if (hass.user?.is_admin) {
 					// Trigger on set theme service call
 					hass.connection.subscribeEvents(
-						(e: Record<string, any>) => {
+						(e: Record<string, Record<string, string>>) => {
 							if (e?.data?.service == 'set_theme') {
 								setTimeout(() => setTheme({}), 1000);
 							}

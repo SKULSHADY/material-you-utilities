@@ -14,7 +14,6 @@ export default defineConfig([
 			'material-you-utilities': './src/material-you-utilities.ts',
 		},
 		output: {
-			path: './dist',
 			filename: '[name].min.js',
 		},
 		resolve: {

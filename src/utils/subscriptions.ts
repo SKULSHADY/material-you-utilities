@@ -15,6 +15,7 @@ import { debugToast } from './logging';
 export async function setupSubscriptions(
 	args: IHandlerArguments,
 ): Promise<(() => Promise<void>)[]> {
+	// eslint-disable-next-line no-async-promise-executor
 	return new Promise(async (resolve) => {
 		const hass = (await getHomeAssistantMainAsync()).hass;
 		const userId = hass.user?.id;

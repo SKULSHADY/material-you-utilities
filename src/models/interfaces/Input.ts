@@ -31,11 +31,11 @@ export interface IInputInfo {
 	name: string;
 	description: string;
 	init: {
-		config: Record<string, any>;
+		config: Record<string, unknown>;
 	};
 	card: {
 		tabBarIndex: number;
-		config: Record<string, any>;
+		config: Record<string, unknown>;
 		resetButton?: boolean;
 	};
 	handler: Handler;
@@ -58,8 +58,7 @@ export interface LabelRegistryEntryMutableParams {
 	description?: string;
 }
 export interface LabelRegistryEntry
-	extends RegistryEntry,
-		LabelRegistryEntryMutableParams {
+	extends RegistryEntry, LabelRegistryEntryMutableParams {
 	label_id: string;
 }
 

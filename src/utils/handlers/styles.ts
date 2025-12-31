@@ -230,7 +230,7 @@ export async function setStyles(target: typeof globalThis) {
 	) {
 		if (implicitElements[name]) {
 			class PatchedElement extends constructor {
-				constructor(...args: any[]) {
+				constructor(...args: unknown[]) {
 					super(...args);
 
 					// Most efficient

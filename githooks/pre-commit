@@ -1,7 +1,13 @@
 #!/bin/sh
 
 echo Building Material You Utilities JavaScript module...
-npx lint-staged --allow-empty
+npx lint-staged
+if [ $? -ne 0 ]
+then
+  exit 1
+fi
+
+npm run lint
 if [ $? -ne 0 ]
 then
   exit 1
@@ -18,4 +24,3 @@ if [ $? -ne 0 ]
 then
   exit 1
 fi
-echo Done!

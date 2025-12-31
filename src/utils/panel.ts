@@ -22,8 +22,8 @@ import {
 export async function createInput(
 	hass: HomeAssistant,
 	type: InputDomain,
-	config: Record<string, any>,
-): Promise<Record<string, any>> {
+	config: Record<string, unknown>,
+): Promise<Record<string, unknown>> {
 	return await hass.callWS({
 		type: `${type}/create`,
 		...config,
@@ -41,8 +41,8 @@ export async function updateInput(
 	hass: HomeAssistant,
 	domain: InputDomain,
 	id: string,
-	config: Record<string, any>,
-): Promise<Record<string, any>> {
+	config: Record<string, unknown>,
+): Promise<Record<string, unknown>> {
 	return await hass.callWS({
 		type: `${domain}/update`,
 		[`${domain}_id`]: id,

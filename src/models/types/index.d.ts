@@ -10,14 +10,14 @@ declare global {
 		webkit?: {
 			messageHandlers: {
 				externalBus: {
-					postMessage: (msg: any) => void;
+					postMessage: (msg: unknown) => void;
 				};
 			};
 		};
 		MaterialYouInit?: boolean;
 		browser_mod?: {
 			browserID?: string;
-			browsers?: Record<string, Record<string, any>>;
+			browsers?: Record<string, Record<string, unknown>>;
 		};
 		loadCardHelpers: () => Promise<CardHelpers>;
 	}

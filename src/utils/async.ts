@@ -49,7 +49,7 @@ export async function getAsync(
 	element: Node,
 	key: string,
 	timeout: number = 60000,
-): Promise<any> {
+): Promise<unknown> {
 	let sleep = 1;
 	setTimeout(() => (sleep = 10), 100);
 	setTimeout(() => (sleep = 100), 1000);
@@ -108,10 +108,10 @@ export async function handleWhenReady(
  */
 export async function getHomeAssistantMainAsync(): Promise<HassElement> {
 	const ha = (await querySelectorAsync(
-		await getAsync(
+		(await getAsync(
 			await querySelectorAsync(document, 'home-assistant'),
 			'shadowRoot',
-		),
+		)) as HassElement,
 		'home-assistant-main',
 	)) as HassElement;
 	await getAsync(ha, 'shadowRoot');

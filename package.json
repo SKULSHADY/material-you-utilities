@@ -30,6 +30,7 @@
 		"lit": "latest"
 	},
 	"devDependencies": {
+		"@eslint/js": "latest",
 		"@rspack/cli": "latest",
 		"@rspack/core": "latest",
 		"@typescript-eslint/eslint-plugin": "latest",
@@ -46,6 +47,7 @@
 		"prettier-plugin-organize-imports": "latest",
 		"ts-loader": "latest",
 		"typescript": "latest",
+		"typescript-eslint": "latest",
 		"typescript-plugin-css-modules": "latest"
 	}
 }
