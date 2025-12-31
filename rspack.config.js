@@ -14,7 +14,7 @@ export default defineConfig([
 			'material-you-utilities': './src/material-you-utilities.ts',
 		},
 		output: {
-			filename: '[name].min.js',
+			filename: 'material-you-utilities.min.js',
 		},
 		resolve: {
 			extensions: ['.ts', '.tsx', '.js'],
