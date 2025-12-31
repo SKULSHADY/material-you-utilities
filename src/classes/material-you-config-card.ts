@@ -22,7 +22,8 @@ import {
 import { setupSubscriptions } from '../utils/subscriptions';
 if (!customElements.get('disk-color-picker')) {
 	// HACS install causes this module to be defined twice, this squashes the error
-	await import('disk-color-picker');
+	// eslint-disable-next-line @typescript-eslint/no-require-imports
+	require('disk-color-picker');
 }
 
 export class MaterialYouConfigCard extends LitElement {
