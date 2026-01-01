@@ -51,10 +51,7 @@ ha-md-list-item {
 	--sidebar-item-state-layer-shape: var(--md-sys-shape-corner-full);
 	--md-list-item-leading-space: 16px;
 	--md-list-item-trailing-space: 16px;
-	--md-focus-ring-shape-end-end: var(--md-sys-shape-corner-full);
-	--md-focus-ring-shape-end-start: var(--md-sys-shape-corner-full);
-	--md-focus-ring-shape-start-end: var(--md-sys-shape-corner-full);
-	--md-focus-ring-shape-start-start: var(--md-sys-shape-corner-full);
+	--md-focus-ring-color: transparent;
 }
 
 /* Expanded rail indicator should fit content width */
@@ -87,7 +84,7 @@ ha-md-list-item.selected {
 	letter-spacing: var(--md-sys-typescale-label-large-tracking);
 }
 
-/* Make collapsed navigation rail items vertical and hide default ripple */
+/* Make collapsed navigation rail items vertical */
 :host(:not([expanded])) ha-md-list-item {
 	border-radius: 0;
 	padding-top: 4px;
@@ -95,8 +92,11 @@ ha-md-list-item.selected {
 
 	--md-list-item-flex-direction: column;
 	--ha-md-list-item-gap: 10px;
-	--ha-ripple-hover-color: transparent;
-	--ha-ripple-pressed-color: transparent;
+}
+
+/* Hide rail default ripple */
+:host(:not([expanded])) ha-md-list-item::part(ripple) {
+	display: none;
 }
 
 /* Display label when not expanded */
@@ -183,7 +183,7 @@ ha-md-list-item.selected {
 :host(:not([expanded])) ha-icon::after,
 :host(:not([expanded])) ha-user-badge::after {
 	background-color: var(--md-sys-color-on-secondary-container);
-	opacity: 0;
+	opacity: var(--state-layer-opacity, 0);
 	transition: opacity var(--md-sys-motion-expressive-effects-default);
 }
 @media (hover: hover) {
@@ -193,13 +193,6 @@ ha-md-list-item.selected {
 		opacity: 0.08;
 	}
 }
-:host(:not([expanded]))
-	ha-md-list-item:has(input:focus-visible)
-	ha-svg-icon::after,
-:host(:not([expanded])) ha-md-list-item:has(input:focus-visible) ha-icon::after,
-:host(:not([expanded]))
-	ha-md-list-item:has(input:focus-visible)
-	ha-user-badge::after,
 :host(:not([expanded])) ha-md-list-item:active ha-svg-icon::after,
 :host(:not([expanded])) ha-md-list-item:active ha-icon::after,
 :host(:not([expanded])) ha-md-list-item:active ha-user-badge::after {
