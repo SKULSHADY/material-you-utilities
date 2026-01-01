@@ -422,6 +422,12 @@ Numerical inputs optimized for human interaction. Uses the small variant, which 
 
 <img src="https://raw.githubusercontent.com/Nerwyn/material-you-utilities/main/assets/slider.png" width="500"/>
 
+#### [Progress Indicators](https://m3.material.io/components/progress-indicators/overview)
+
+Sliders with ID `#position-slider` will receive alternate wavy progress indicator styles. At time of writing this slider is only present in the media player more info dialog.
+
+<img src="https://raw.githubusercontent.com/Nerwyn/material-you-utilities/main/assets/progress-indicator.png" width="500"/>
+
 #### Notes
 
 - As of 2025.10.0 the base component of the slider has changed. This new component does not support alternate colors for tick marks before and after the slider handle. Instead one color is used with CSS mix-blend-mode difference.
