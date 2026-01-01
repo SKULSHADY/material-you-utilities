@@ -238,12 +238,12 @@ ha-tab-group-tab:active ha-icon::after {
 
 /* Tabs with no icon */
 ha-tab-group-tab:not(:has(ha-icon))::part(base) {
-	color: transparent;
-	line-height: 32px;
+	color: var(--md-sys-color-secondary);
+	margin: auto;
 }
 
 /* View label */
-ha-tab-group-tab::after {
+ha-tab-group-tab:has(ha-icon)::after {
 	content: attr(aria-label);
 	text-transform: none;
 	text-wrap: wrap;
@@ -377,11 +377,6 @@ ha-menu-button {
 		justify-content: center;
 	}
 
-	/* Show original label of view tab with no icon */
-	ha-tab-group-tab:not(:has(ha-icon))::part(base) {
-		color: unset;
-	}
-
 	/* Move label to right of icon, ensure that it can contain content, and remove top margin */
 	ha-tab-group-tab::part(base) {
 		justify-content: flex-start;
@@ -399,7 +394,7 @@ ha-menu-button {
 	}
 
 	/* Remove vertical label */
-	ha-tab-group-tab::after {
+	ha-tab-group-tab:has(ha-icon)::after {
 		content: unset;
 	}
 
