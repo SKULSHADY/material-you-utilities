@@ -46,7 +46,7 @@ export function loadStyles(styles: string): string {
 	let importantStyles = styles
 		.toString()
 		.replace(/ !important/g, '')
-		.replace(/;/g, ' !important;');
+		.replace(/;\n/g, ' !important;\n');
 
 	// Remove !important from keyframes
 	// Initial check to avoid expensive regex for most user styles

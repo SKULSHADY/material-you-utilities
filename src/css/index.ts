@@ -43,7 +43,6 @@ import huiRootHideToolbar from './hui-root-hide-toolbar.css';
 import huiRoot from './hui-root.css';
 import huiViewHeader from './hui-view-header.css';
 import huiViewVisibilityEditor from './hui-view-visibility-editor.css';
-import moreInfoMediaPlayer from './more-info-media_player.css';
 import waDialog from './wa-dialog.css';
 
 /**
@@ -88,7 +87,6 @@ export const implicitElements: Record<string, string> = {
 	'hui-view-header': huiViewHeader,
 	'hui-view-visibility-editor': huiViewVisibilityEditor,
 	'hue-like-light-card': hueLikeLightCard,
-	'more-info-media_player': moreInfoMediaPlayer,
 	'wa-dialog': waDialog,
 };
 
