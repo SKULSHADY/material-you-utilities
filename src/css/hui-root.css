@@ -159,6 +159,7 @@ ha-tab-group-tab {
 	box-sizing: border-box;
 	min-width: 56px;
 	max-width: 174px;
+	min-height: var(--footer-height);
 	cursor: pointer;
 	overflow: hidden;
 	-webkit-tap-highlight-color: transparent;
