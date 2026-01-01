@@ -240,6 +240,8 @@ ha-tab-group-tab:active ha-icon::after {
 ha-tab-group-tab:not(:has(ha-icon))::part(base) {
 	color: var(--md-sys-color-secondary);
 	margin: auto;
+	text-wrap-mode: wrap;
+	text-align: center;
 }
 
 /* View label */
