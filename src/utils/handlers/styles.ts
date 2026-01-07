@@ -215,6 +215,8 @@ async function applyExplicitStyles() {
 	);
 }
 
+const definedElements = new Set<string>();
+
 /**
  * Modify targets custom element registry define function to intercept constructors to use custom styles
  * Style are redundantly added in multiple places to ensure speed and consistency
@@ -244,8 +246,33 @@ export async function setStyles(target: typeof globalThis) {
 			constructor = PatchedElement;
 		}
 
+		definedElements.add(name);
 		return define.call(this, name, constructor, options);
 	};
+
+	// Update already defined element constructors
+	for (const element in implicitElements) {
+		target.customElements.whenDefined(element).then((cls) => {
+			if (!definedElements.has(element)) {
+				const updated = cls.prototype.updated;
+				class PatchedElement extends cls {
+					updated(args: unknown) {
+						updated?.call(this, args);
+
+						if (this.shadowRoot && !hasStyles(this)) {
+							// Most efficient
+							observeThenApplyStyles(this);
+
+							// Most coverage
+							applyStylesOnTimeout(this);
+						}
+					}
+				}
+
+				cls.prototype.updated = PatchedElement.prototype.updated;
+			}
+		});
+	}
 
 	// Explictly set styles for some elements that load too early
 	applyExplicitStyles();
