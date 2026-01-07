@@ -14,7 +14,7 @@ import { setCardType } from './utils/handlers/cards';
 import { setCSSFromFile } from './utils/handlers/css';
 import { setBaseColorFromImage } from './utils/handlers/image';
 import { hideNavbar } from './utils/handlers/navbar';
-import { setStyles } from './utils/handlers/styles';
+import { setExplicitStyles, setStyles } from './utils/handlers/styles';
 import { setTheme } from './utils/handlers/theme';
 import { mdLog } from './utils/logging';
 import { setupSubscriptions } from './utils/subscriptions';
@@ -28,6 +28,7 @@ async function main() {
 	// Set styles on main window custom elements
 	// Do this before anything else because it's time sensitive
 	setStyles(window);
+	setExplicitStyles();
 
 	mdLog(
 		document.querySelector('html') as HTMLElement,

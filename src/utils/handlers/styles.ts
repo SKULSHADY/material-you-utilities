@@ -190,31 +190,6 @@ function applyStylesOnTimeout(element: HTMLElement) {
 	);
 }
 
-/**
- * Explicitly apply styles to top level elements
- */
-async function applyExplicitStyles() {
-	handleWhenReady(
-		async () => {
-			if (shouldSetStyles) {
-				const haMain = await getHomeAssistantMainAsync();
-				const ha = await querySelectorAsync(document, 'home-assistant');
-				const haDrawer = await querySelectorAsync(
-					haMain.shadowRoot as ShadowRoot,
-					'ha-drawer',
-				);
-				applyStylesToShadowRoot(ha);
-				applyStylesToShadowRoot(haMain);
-				applyStylesToShadowRoot(haDrawer);
-			}
-		},
-		() => {
-			checkTheme();
-			return Boolean(theme);
-		},
-	);
-}
-
 const definedElements = new Set<string>();
 
 /**
@@ -273,7 +248,29 @@ export async function setStyles(target: typeof globalThis) {
 			}
 		});
 	}
+}
 
-	// Explictly set styles for some elements that load too early
-	applyExplicitStyles();
+/**
+ * Explicitly set styles to top level elements
+ */
+export async function setExplicitStyles() {
+	handleWhenReady(
+		async () => {
+			if (shouldSetStyles) {
+				const haMain = await getHomeAssistantMainAsync();
+				const ha = await querySelectorAsync(document, 'home-assistant');
+				const haDrawer = await querySelectorAsync(
+					haMain.shadowRoot as ShadowRoot,
+					'ha-drawer',
+				);
+				applyStylesToShadowRoot(ha);
+				applyStylesToShadowRoot(haMain);
+				applyStylesToShadowRoot(haDrawer);
+			}
+		},
+		() => {
+			checkTheme();
+			return Boolean(theme);
+		},
+	);
 }
