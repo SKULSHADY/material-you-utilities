@@ -1,0 +1,5 @@
+:host {
+	--ha-view-sections-row-height: 80px;
+	--ha-view-sections-row-gap: 16px;
+	--ha-view-sections-extra-top-margin: 40px;
+}

@@ -58,8 +58,8 @@ ha-md-list-item {
 :host([expanded]) ha-md-list-item {
 	height: 56px;
 	width: calc(var(--mdc-drawer-width) - env(safe-area-inset-left));
-	max-width: fit-content;
-	margin: 0 20px;
+	max-width: -webkit-fill-available;
+	margin: 0 16px;
 	border-radius: var(--md-sys-shape-corner-full);
 
 	--sidebar-item-display: block;
@@ -67,7 +67,7 @@ ha-md-list-item {
 
 /* Modal sidebar item width */
 :host([narrow]) ha-md-list-item {
-	min-width: fit-content;
+	min-width: -webkit-fill-available;
 }
 
 /* Fix collapsed rail selected text color */
@@ -217,11 +217,12 @@ ha-md-list-item ha-icon {
 	background-color: var(--error-color);
 	font-size: var(--md-sys-typescale-label-small-size);
 	font-weight: var(--md-sys-typescale-label-small-weight);
-	line-height: var(--md-sys-typescale-label-small-line-height);
+	line-height: 8px;
 	letter-spacing: var(--md-sys-typescale-label-small-tracking);
 	height: 8px;
 	min-width: 8px;
 	padding: 4px;
+	text-align: center;
 }
 .badge[slot='start'] {
 	top: 8px;

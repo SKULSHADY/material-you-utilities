@@ -41,6 +41,7 @@ import huiGridSection from './hui-grid-section.css';
 import huiRootHideHaTabGroup from './hui-root-hide-ha-tab-group.css';
 import huiRootHideToolbar from './hui-root-hide-toolbar.css';
 import huiRoot from './hui-root.css';
+import huiSectionsView from './hui-sections-view.css';
 import huiViewHeader from './hui-view-header.css';
 import huiViewVisibilityEditor from './hui-view-visibility-editor.css';
 import waDialog from './wa-dialog.css';
@@ -84,6 +85,7 @@ export const implicitElements: Record<string, string> = {
 	'hui-entities-card-editor': huiEntitiesCardEditor,
 	'hui-grid-section': huiGridSection,
 	'hui-root': huiRoot,
+	'hui-sections-view': huiSectionsView,
 	'hui-view-header': huiViewHeader,
 	'hui-view-visibility-editor': huiViewVisibilityEditor,
 	'hue-like-light-card': hueLikeLightCard,
