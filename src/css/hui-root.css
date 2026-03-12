@@ -1,19 +1,15 @@
-/* Make non subview headers transparent */
-.header:not(:has(ha-icon-button-arrow-prev ~ .main-title)) {
-	background-color: transparent;
-	pointer-events: none;
+:host {
+	--footer-height: 80px;
 }
 
-/* Make subview headers match background until scrolled */
-.header:has(ha-icon-button-arrow-prev ~ .main-title) {
-	background-color: var(--md-sys-color-surface);
-	transition: background-color var(--md-sys-motion-expressive-effects-fast);
+.header {
+	background-color: transparent;
+	pointer-events: none;
+	--mdc-icon-size: 24px;
 }
+
 :host([scrolled]) .header {
-	box-shadow: none;
-}
-:host([scrolled]) .header:has(ha-icon-button-arrow-prev ~ .main-title) {
-	background-color: var(--md-sys-color-surface-container);
+	background-color: var(--lovelace-background);
 }
 
 /* Hide single tab view dashboard title */
@@ -24,10 +20,12 @@ ha-menu-button + .main-title {
 /* App bar title font and transition */
 .main-title,
 ha-tab-group-tab[active]::before {
+	margin: 0 20px;
 	font-size: var(--md-sys-typescale-title-large-size);
 	font-weight: var(--md-sys-typescale-title-large-weight);
 	line-height: var(--md-sys-typescale-title-large-line-height);
 	letter-spacing: var(--md-sys-typescale-title-large-tracking);
+	display: none;
 }
 :not(:has(ha-icon-button-arrow-prev)) > .main-title,
 ha-tab-group-tab[active]::before {
@@ -59,6 +57,10 @@ ha-tab-group-tab[active]::before {
 	display: none;
 }
 
+:host([scrolled]) .main-title {
+	display: flex;
+}
+
 /*
  * Move menu and action items buttons to header
  * User different color for header trailing icons
@@ -72,13 +74,12 @@ ha-icon-button-arrow-prev[slot='navigationIcon'] {
 }
 ha-menu-button,
 .action-items {
-	margin: 0 12px;
+	margin: 0 16px;
 }
 .action-items {
 	position: absolute;
 	inset-inline-end: 0;
-	gap: 4px;
-	color: var(--app-header-edit-text-color);
+	gap: 8px;
 }
 
 /* Add background to header buttons on scroll */
@@ -103,8 +104,11 @@ ha-menu-button,
 :not(:has(ha-icon-button-arrow-prev)) > .action-items > ha-icon-button {
 	display: flex;
 	justify-content: center;
-	width: 32px;
-	margin: 0 4px;
+	width: 48px;
+	height: 48px;
+}
+ha-icon-button-arrow-prev[slot='navigationIcon'] {
+	margin-inline-start: 16px;
 }
 :host([scrolled]) :not(:has(ha-icon-button-arrow-prev)) ha-menu-button {
 	background: var(--md-sys-color-surface-container);
@@ -121,11 +125,6 @@ ha-menu-button,
 	background: var(--md-sys-color-secondary-container);
 
 	--inherited-text-color: var(--md-sys-color-on-secondary-container);
-}
-
-/* Remove toolbar padding */
-.toolbar {
-	padding: 0;
 }
 
 /* Force hide subview tab just in case */
@@ -195,7 +194,7 @@ ha-tab-group::part(tabs) {
 /* Display view tab contents vertically and calculate width to fill entire toolbar */
 ha-tab-group-tab {
 	display: flex;
-	padding: 6px 0;
+	padding: 12px 0;
 	flex-direction: column;
 	flex: 1;
 	justify-content: center;

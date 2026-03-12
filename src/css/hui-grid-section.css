@@ -2,3 +2,7 @@
 .add {
 	--icon-primary-color: var(--md-sys-color-on-surface);
 }
+
+:host {
+	--ha-section-grid-row-height: 80px;
+}

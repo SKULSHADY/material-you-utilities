@@ -246,11 +246,12 @@ ha-list-item-button ha-icon {
 	background-color: var(--error-color);
 	font-size: var(--md-sys-typescale-label-small-size);
 	font-weight: var(--md-sys-typescale-label-small-weight);
-	line-height: var(--md-sys-typescale-label-small-line-height);
+	line-height: 8px;
 	letter-spacing: var(--md-sys-typescale-label-small-tracking);
 	height: 8px;
 	min-width: 8px;
 	padding: 4px;
+	text-align: center;
 }
 .badge[slot='start'] {
 	top: 8px;
